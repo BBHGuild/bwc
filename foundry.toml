@@ -1,0 +1,71 @@
+[profile.default]
+src = "src"
+out = "out"
+test = "test"
+libs = ["lib"]
+# solc_version = "0.8.30"
+optimizer = true
+optimizer_runs = 1
+# evm_version = 'cancun'
+# via_ir = true
+
+# additional_compiler_profiles = [
+# { name = "old1", evm_version = "cancun", via_ir = true  }
+# { name = "old2", version ="^0.5.8", evm_version="istanbul"  },
+# { name = "old3", version ="^0.5.8"  },
+# { name = "old4", version ="^0.7.6"  },
+# ]
+
+# compilation_restrictions = [
+# { paths = "src/**" , version = "^0.8.30", evm_version="cancun", via_ir = true },
+# { paths = "test/**", via_ir = false }
+# { paths = "src/Unitroller.sol", solc_version = "^0.5.8", evm_version="istanbul" },
+# { paths = "src/CErc20.sol" , solc_version = "^0.5.8" },
+# { paths = "src/Staking.sol" , solc_version = "^0.7.6" },
+# ]
+
+# 5159: Seldestruct
+# 5574: Contract Bytes Size exceed 24kb
+# 3860: Init contract Size exeeds 49kb
+# 2424: Natspec memory-safe-assembly special comment for inline assembly is deprecated and scheduled for removal.
+# Warning (4591): There are more than 256 warnings. Ignoring the rest.
+# Warning (9302): Return value of low-level calls not used.
+ignored_error_codes = [5159,5574,3860, 2424, 9302]
+
+# Configures permissions for cheatcodes that touch the filesystem like `vm.writeFile`
+# `access` restricts how the `path` can be accessed via cheatcodes
+#    `read-write` | `true`   => `read` + `write` access allowed (`vm.readFile` + `vm.writeFile`)
+#    `none`| `false` => no access
+#    `read` => only read access (`vm.readFile`)
+#    `write` => only write access (`vm.writeFile`)
+# The `allowed_paths` further lists the paths that are considered, e.g. `./` represents the project root directory
+# By default _no_ fs access permission is granted, and _no_ paths are allowed
+# following example enables read access for the project dir _only_:
+#       `fs_permissions = [{ access = "read", path = "./"}]`
+fs_permissions = [{ access = "read-write", path = "./"}]
+
+[rpc_endpoints]
+mainnet = "https://reth-ethereum.ithaca.xyz/rpc"
+
+[lint]
+# severity=["none"]
+# exclude_lints = ["mixed-case-functions"]
+# Ignore all files using glob pattern
+ignore = ["*", "src/Comptroller.sol", "src/*"]
+lint_on_build=false
+
+[fmt]
+single_line_statement_blocks = "multi"
+multiline_func_header = 'params_first_multi'
+sort_imports = true
+contract_new_lines = true
+override_spacing = false
+line_length = 120
+tab_width = 4
+bracket_spacing = false
+int_types = "long"
+quote_style = "double"
+number_underscore = "thousands"
+hex_underscore= "remove"
+wrap_comments = true
+ignore = ["src/*"]

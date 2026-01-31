@@ -1,0 +1,17 @@
+[book]
+
+authors = ["Emile Sean"]
+language = "en"
+src = "src"
+title = "Library"
+
+
+[output.html]
+no_section_label = true
+fold = {enable = true}
+additional-resources = ["assets","favicon.ico"]
+additional-css = ["theme/pagetoc.css", "theme/collapsible.css"]
+additional-js = ["theme/pagetoc.js", "theme/collapsible.js"]
+
+[preprocessor.katex]
+renderers = ["html"]

@@ -1,0 +1,21 @@
+[sepolia]
+endpoint_url = "${sepolia}"
+
+[sepolia.address]
+owner = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"
+token = "0x3fcC26e547e5982273296e260b67D82BD1690D4a"
+
+[sepolia.bool]
+is_testnet = false
+use_timelock = true
+
+[hoodi]
+endpoint_url = "${hoodi}"
+
+[hoodi.address]
+owner = "0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9"
+token = "0x367d8CD9Acb86C27d25d73a81278aa39b23b089E"
+
+[hoodi.bool]
+is_testnet = true
+use_timelock = false

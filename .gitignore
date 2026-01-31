@@ -1,0 +1,15 @@
+book
+
+/cache/
+/out/
+/.vscode/
+.env
+dependencies/
+POC.md
+tx.log
+dotfiles/gemini/.gemini/history/
+dotfiles/gemini/.gemini/tmp
+dotfiles/gemini/.gemini/oauth_creds.json
+dotfiles/gemini/.gemini/google_accounts.json
+dotfiles/gemini/.gemini/skills/
+dotfiles/gemini/.gemini/installation_id
