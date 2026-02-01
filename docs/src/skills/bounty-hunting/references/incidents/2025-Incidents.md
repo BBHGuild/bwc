@@ -160,6 +160,33 @@ This database uses the [BWC](../BWC/BWC.md) to classify Contract Vulnerability I
   - [Expiry Price Manipulation Tx (Etherscan)](https://etherscan.io/tx/0xb73e45948f4aabd77ca888710d3685dd01f1c81d24361d4ea0e4b4899d490e1e)
 ---
 
+## 2025-11-20 - 5
+
+- **Date**: 2025-11-20
+- **Project**: GANA Payment
+- **Value Lost**: ~\$3,100,000
+- **Chain**: BSC
+- **BWC**:
+  - **Broader Classification**: `BWC 10: Network & Consensus Evolution Attacks`
+  - **Primary Classification**: `BWC 10.4.1: EIP-7702 Delegation Risks`
+  - **Secondary Classification**: `BWC 1.2.2: Private Key Leakage`, `BWC 2.1.1: Missing Access Control`
+- **Description**:
+  - GANA Payment, a newly launched payment protocol on BSC, was exploited for \$3.1 million just nine days after launch.
+  - **Root Cause**: The exploit originated from a compromised owner private key. The attacker used this key to authorize an EIP-7702 delegation to a malicious contract.
+  - **The Exploit**: The malicious delegator contract acted as a middleman, allowing the attacker to bypass the `onlyEOA` (`tx.origin == msg.sender`) check on the staking contract. Because the transaction was an EIP-7702 transaction authorized by the owner, the staking contract perceived the calls as legitimate EOA interactions from the owner.
+  - **Attack Flow**:
+    1.  **Access**: Compromised the owner key.
+    2.  **Delegation**: Transferred ownership to 8 different addresses, each authorizing the malicious EIP-7702 delegator.
+    3.  **Manipulation**: The delegated code manipulated the `gana_Computility` reward rate to an astronomical value (10,000,000,000,000,000).
+    4.  **Drain**: Systematically staked and unstaked funds through these accounts, draining the protocol.
+  - **Aftermath**: \$2.1M was bridged to Ethereum, and ~\$1M was laundered through Tornado Cash on BSC.
+- **References**:
+  - [Rekt.news Analysis](https://rekt.news/gana-payment-rekt)
+  - [Malicious Delegator](https://bscscan.com/address/0x7A44bD9C6095Ca7b2A6f62FE65b81924c6cAb067)
+  - [Exploit Transaction](https://bscscan.com/tx/0x0a1fabbb536cf776335e2ded5ebf70f4c9601376e7265a127afe55305eff69ad)
+
+---
+
 ## 2025-11-11 - 4
 
 - **Date**: 2025-11-11
