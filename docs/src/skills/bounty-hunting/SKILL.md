@@ -219,7 +219,11 @@ Use EIP-7702 to execute transactions from a compromised EOA without funding it w
 
 ### Step 4: Log Security Incident
 
-1.  **Documentation:** Log a brief description of the incident using the existing template. Append the entry to the appropriate year's log file:
+1.  **Documentation:** 
+    *   Log a brief description of the incident using the existing template.
+    *   Append the entry to the appropriate year's log file.
+    *   **Note:** The dates do not have to be chronological.
+    *   **Numbering:** Append the incident number according to the month in descending order, with the latest incident having a higher count. Example: `## 2025-11-20 - {Incident Number}`
     *   [2026 Incidents](references/incidents/2026-Incidents.md)
     *   [2025 Incidents](references/incidents/2025-Incidents.md)
     *   [2024 Incidents](references/incidents/2024-Incidents.md)
