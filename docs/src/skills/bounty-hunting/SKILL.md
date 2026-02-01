@@ -150,7 +150,7 @@ ignore = ["src/*"]
 ### Step 2: Weaponization
 
 1.  **Reference:** Use the private **Blockchain Weakness Classification (BWC)** (`references\bwc.md`) as a guide.
-    *   Focus: on BWC 2,3,4,5,6,7,8 
+    *   Focus: on BWC 2,3,4,5,6,7,8,10 
 2.  **Scope & Severity Check:** Consult `references/IVSCS.md` Immunefi Vulnerability Severity Classification System to verify in-scope assets and eligible severity levels. Note: Confirm if the program restricts submissions to specific severities (e.g., Critical/High only).
 3.  **Linting:** Check linting only for high-severity issues: `forge lint --severity high`.
 4.  **Happy Path:** Write fork tests to verify standard functionality works as expected.
@@ -181,8 +181,8 @@ Structure the standalone PoC for submission. Isolate the bug so it compiles inde
 3.  **Verification:** Ensure tests pass: `forge build`.
 
 ### Step 6: Finalize & Version Control
-
-1.  **Git Operations:** Once a feature, bug fix, or PoC is complete and verified:
+1. Always ask for approval before committing.
+2.  **Git Operations:**  Once a feature, bug fix, or PoC is complete and verified:
     *   **Stage:** `git add <files>`
     *   **Commit:** `git commit -m "feat/fix: <description>"`
     *   **Push:** `git push`
@@ -230,7 +230,8 @@ Use EIP-7702 to execute transactions from a compromised EOA without funding it w
 
 ### Step 5: Finalize & Version Control
 
-1.  **Git Operations:** Once the incident response and logging are complete:
+1. Always ask for approval before committing.
+2.  **Git Operations:** Once the incident response and logging are complete:
     *   **Stage:** `git add <files>`
     *   **Commit:** `git commit -m "docs: log incident <name>"`
     *   **Push:** `git push`
@@ -251,7 +252,7 @@ Refer to the [Service Level Agreement](references/ServiceLevelAgreement.md) when
 - Default to current Foundry/Solidity best practices.
 - Do not be overtly verbose; tests should be self-documenting.
 - Ask clarifying questions if requirements are ambiguous.
-- **Version Control:** Always stage, commit, and push changes upon completion of a feature or task.
+- **Version Control:** Always ask for approval before committing. Once approved, stage, commit, and push changes.
 
 ### Foundry & Tooling
 - Use named imports: `import {Contract} from "src/Contract.sol"`.
