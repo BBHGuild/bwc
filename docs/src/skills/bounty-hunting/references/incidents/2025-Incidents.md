@@ -503,7 +503,7 @@ This database uses the [BWC](../BWC/BWC.md) to classify Contract Vulnerability I
 
 ---
 
-## 2025-08-25 - 4
+## 2025-08-25 - 5
 
 - **Date**: 2025-08-25
 - **Project**: Panoptic
@@ -521,6 +521,29 @@ This database uses the [BWC](../BWC/BWC.md) to classify Contract Vulnerability I
   - The vulnerability was responsibly disclosed by a researcher from Cantina, leading to a coordinated white-hat rescue operation that successfully secured over 98% of at-risk funds, preventing any loss.
 - **References**:
   - [Cantina Post-Mortem: Inside the \$4M Panoptic Rescue](https://cantina.xyz/blog/panoptic-cantina-whitehat-rescue)
+
+---
+
+## 2025-08-24 - 4
+
+- **Date**: 2025-08-24
+- **Project**: Unverified Staking Contract
+- **Value Lost**: ~\$85,000
+- **Chain**: BSC
+- **BWC**:
+  - **Broader Classification**: `BWC 10: Network & Consensus Evolution Attacks`
+  - **Primary Classification**: `BWC 10.4.1: EIP-7702 Delegation Risks`
+  - **Secondary Classification**: `BWC 5.2.1: Price Manipulation`
+- **Description**:
+  - An unverified staking contract on BSC was exploited for ~\$85k. The victim contract used the "EOA only" (`tx.origin == msg.sender`) check to protect its stake function from flashloan-based price manipulation.
+  - **The Exploit**: The attacker deployed a malicious contract and authorized its delegation to an EOA using a 7702-type transaction. The EOA transferred ~13.9 BNB tokens to itself, triggering arbitrary smart contract logic while ensuring that future `tx.origin == msg.sender` checks pass.
+  - **Attack Flow**:
+    1.  **Flashloan & Pump**: In the fallback function, the malicious contract flashloaned $3.5M BSC-USD, bought POT tokens from the PancakeSwap BSC-USD/POT pool to inflate the price, then staked ~220k POT at the inflated price.
+    2.  **Dump**: The attacker swapped the remaining POT tokens back to BSC-USD tokens to repay the flashloan and almost reset the BSC-USD/POT price.
+    3.  **Profit**: In a subsequent transaction, the attacker unstaked and received 3.3M POT tokens (versus 220k staked) due to the inflated recorded value.
+- **References**:
+  - [Unverified staking contract](https://bscscan.com/address/0x0aeb8c4a449e1f712676692ef8948d8c952feb53)
+  - [Exploit Transaction](https://bscscan.com/tx/0x8a7c96521ac64fc33d8d8ceecdea9c1da9c72148c4399905c38a07ee47c3f36f)
 
 ---
 
