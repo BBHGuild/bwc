@@ -24,6 +24,22 @@
     transform: rotate(90deg);
 }
 
+.toggle-all-btn {
+    background-color: var(--quote-bg);
+    color: var(--fg);
+    border: 1px solid var(--sidebar-bg);
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.toggle-all-btn:hover {
+    background-color: var(--sidebar-bg);
+}
+
 /* Reset header styling specifically within the BWC table */
 .page-wrapper table h1,
 .page-wrapper table h2,

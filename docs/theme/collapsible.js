@@ -37,7 +37,35 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Second pass: Add icons and set initial state
+    // Toggle All Button Logic
+    const toggleButton = document.createElement('button');
+    toggleButton.textContent = 'Collapse All'; // Default is open, so button allows collapsing
+    toggleButton.className = 'toggle-all-btn';
+    
+    // Insert button before the table
+    table.parentElement.insertBefore(toggleButton, table);
+
+    // Function to update visibility based on expanded state
+    function updateVisibility(parentId, isExpanded) {
+        const children = table.querySelectorAll(`[data-bwc-parent="${parentId}"]`);
+        children.forEach(child => {
+            if (isExpanded) {
+                child.style.display = 'table-row';
+                // If this child is also a header and is expanded, ensure its children are shown?
+                // Actually, for "Expand All", we want everything open.
+                // For "Collapse All", we want everything closed.
+                // But for individual toggles, we follow the standard logic.
+                
+                // However, simply setting display table-row might not be enough if we want recursive "Expand All".
+                // If I am showing a child that is an H2, I should check if IT is expanded to show its children.
+                // But for "Expand All" button, we force everything.
+            } else {
+                child.style.display = 'none';
+            }
+        });
+    }
+
+    // Second pass: Add icons and set initial state (DEFAULT OPEN)
     const headers = table.querySelectorAll('.collapsible-header');
     headers.forEach(header => {
         // Find the first cell that actually contains the header tag
@@ -46,65 +74,87 @@ document.addEventListener('DOMContentLoaded', function () {
             headerCell.innerHTML = `<span class="toggle-icon">▶</span>` + headerCell.innerHTML;
         }
 
-        // Set ARIA attribute
-        header.setAttribute('aria-expanded', 'false');
-
-        // Hide all H2 and H3 rows by default
-        if (header.classList.contains('bwc-h2')) {
-            header.style.display = 'none';
-        }
+        // Set Default State: OPEN
+        header.setAttribute('aria-expanded', 'true');
+        header.classList.add('expanded');
+        // Do NOT hide children by default
     });
 
+    // Ensure all collapsible children are visible by default
     table.querySelectorAll('.collapsible-child').forEach(child => {
-        child.style.display = 'none';
+        child.style.display = 'table-row';
     });
 
-    // Add the main click listener
+
+    toggleButton.addEventListener('click', function() {
+        const isCollapsing = toggleButton.textContent.includes('Collapse');
+        toggleButton.textContent = isCollapsing ? 'Expand All' : 'Collapse All';
+
+        headers.forEach(header => {
+            if (isCollapsing) {
+                // COLLAPSE EVERYTHING
+                header.classList.remove('expanded');
+                header.setAttribute('aria-expanded', 'false');
+                
+                // If it's H1 or H2, hide its children
+                const bwcId = header.dataset.bwcId;
+                const children = table.querySelectorAll(`[data-bwc-parent="${bwcId}"]`);
+                children.forEach(c => c.style.display = 'none');
+            } else {
+                // EXPAND EVERYTHING
+                header.classList.add('expanded');
+                header.setAttribute('aria-expanded', 'true');
+
+                // Show children
+                const bwcId = header.dataset.bwcId;
+                const children = table.querySelectorAll(`[data-bwc-parent="${bwcId}"]`);
+                children.forEach(c => c.style.display = 'table-row');
+            }
+        });
+    });
+
+    // Add the main click listener for individual toggles
     table.addEventListener('click', function (e) {
         const headerRow = e.target.closest('.collapsible-header');
         if (!headerRow) return;
 
         const bwcId = headerRow.dataset.bwcId;
-        const isExpanded = headerRow.classList.contains('expanded');
+        const isExpanded = headerRow.classList.contains('expanded'); // State BEFORE toggle click processing? 
+        // No, we are about to toggle. If it HAS 'expanded', we are collapsing it.
 
-        // Toggle icon
-        const icon = headerRow.querySelector('.toggle-icon');
-        if (icon) {
-            icon.textContent = isExpanded ? '▶' : '▼';
-        }
-        
         headerRow.classList.toggle('expanded');
-        // Update ARIA attribute
-        headerRow.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+        const newExpandedState = headerRow.classList.contains('expanded');
+        headerRow.setAttribute('aria-expanded', newExpandedState ? 'true' : 'false');
 
         // Find and toggle visibility of direct children
         const children = table.querySelectorAll(`[data-bwc-parent="${bwcId}"]`);
         children.forEach(child => {
-            if (isExpanded) {
-                // Collapse this row and all its descendants
-                child.style.display = 'none';
-                if (child.classList.contains('expanded')) {
-                    child.classList.remove('expanded');
-                    child.setAttribute('aria-expanded', 'false'); // Also update children aria
-                    const childIcon = child.querySelector('.toggle-icon');
-                    if (childIcon) childIcon.textContent = '▶';
-                    
-                    // Recursively hide grandchildren
-                    const grandchildren = table.querySelectorAll(`[data-bwc-parent="${child.dataset.bwcId}"]`);
-                    grandchildren.forEach(gc => {
-                        gc.style.display = 'none';
-                        // Also reset their expanded state if they are headers themselves
-                         if (gc.classList.contains('expanded')) {
-                            gc.classList.remove('expanded');
-                            gc.setAttribute('aria-expanded', 'false');
-                            const gcIcon = gc.querySelector('.toggle-icon');
-                            if (gcIcon) gcIcon.textContent = '▶';
-                        }
-                    });
-                }
-            } else {
-                // Expand this row
+            if (newExpandedState) {
+                // We just expanded the parent. Show the child.
                 child.style.display = 'table-row';
+            } else {
+                // We just collapsed the parent. Hide the child.
+                child.style.display = 'none';
+                
+                // If the child is also a header (e.g. H2 inside H1), we should probably collapse it too or just hide it?
+                // Standard behavior: Just hide it. State preservation is optional but often preferred.
+                // However, to ensure deep collapsing if the user re-opens:
+                // If I hide an H2, and then show H1 again, the H2 comes back. 
+                // If H2 was expanded, its children should still be visible? 
+                // If I hide H2, its children (H3) are NOT hidden by this loop (they are children of H2, not H1).
+                // So if H2 is hidden, H3 remains visible? That would be broken visual (floating rows).
+                
+                // We must recursively hide descendants if we collapse a parent.
+                if (child.classList.contains('collapsible-header')) {
+                    // It's a header (H2). We should hide ITS children too.
+                     const grandChildren = table.querySelectorAll(`[data-bwc-parent="${child.dataset.bwcId}"]`);
+                     grandChildren.forEach(gc => gc.style.display = 'none');
+                     
+                     // Optional: Collapse the child state too so it opens closed next time?
+                     // Let's Collapse it to keep state clean.
+                     child.classList.remove('expanded');
+                     child.setAttribute('aria-expanded', 'false');
+                }
             }
         });
     });
