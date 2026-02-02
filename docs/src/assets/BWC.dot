@@ -1,4 +1,4 @@
-digraph BWC_Evolution_2020_2026 {
+digraph BWC_Evolution_2017_2026 {
     graph [rankdir=LR, splines=curved, bgcolor="white", fontname="Arial", ranksep=1.5, nodesep=0.3, label="BWC Top 11 (Blockchain Weakness Classification)", labelloc="t", fontsize=20];
     node [shape=none, fontname="Arial", fontsize=12];
     edge [penwidth=3, arrowsize=0.8, opacity=0.8];
@@ -15,6 +15,81 @@ digraph BWC_Evolution_2020_2026 {
     // BWC 9: #EF6C00 (Amber)
     // BWC 10: #B71C1C (Dark Red)
     // BWC 11: #0D47A1 (Blue)
+
+    // 2017
+    subgraph cluster_2017 {
+        label = "2017 - 1 Incident";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2017 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$300M</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#827717"><B>#4: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#00695C"><B>#5: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$300M</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    // 2018
+    subgraph cluster_2018 {
+        label = "2018 - 0 Incidents";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2018 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#827717"><B>#4: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#00695C"><B>#5: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$0</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    // 2019
+    subgraph cluster_2019 {
+        label = "2019 - 0 Incidents";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2019 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#827717"><B>#4: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#00695C"><B>#5: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$0</B></TD></TR>
+            </TABLE>
+        >];
+    }
 
     // 2020
     subgraph cluster_2020 {
@@ -197,6 +272,9 @@ digraph BWC_Evolution_2020_2026 {
 
     // Edges
     // BWC 1: #D7263D (Red)
+    rank2017:p1 -> rank2018:p1 [color="#D7263D"];
+    rank2018:p1 -> rank2019:p1 [color="#D7263D"];
+    rank2019:p1 -> rank2020:p1 [color="#D7263D"];
     rank2020:p1 -> rank2021:p1 [color="#D7263D"];
     rank2021:p1 -> rank2022:p1 [color="#D7263D"];
     rank2022:p1 -> rank2023:p1 [color="#D7263D"];
@@ -205,62 +283,89 @@ digraph BWC_Evolution_2020_2026 {
     rank2025:p1 -> rank2026:p1 [color="#D7263D"];
 
     // BWC 2: #E65100 (Orange)
-    rank2020:p5 -> rank2021:p2 [color="#E65100", style=dashed];
-    rank2021:p2 -> rank2022:p2 [color="#E65100"];
-    rank2022:p2 -> rank2023:p5 [color="#E65100"];
+    rank2017:p3 -> rank2018:p3 [color="#E65100"];
+    rank2018:p3 -> rank2019:p3 [color="#E65100"];
+    rank2019:p3 -> rank2020:p5 [color="#E65100", style=dashed];
+    rank2020:p5 -> rank2021:p5 [color="#E65100"]; // Fixed: was p2 (Smart Contract Logic) in 2021? No, 2021 p2 is Logic. 2021 p5 is Access Control.
+    // Wait, let's check 2021 table in my code:
+    // 2021: p1=Eco, p2=Logic, p3=Econ, p4=Input, p5=Access.
+    // So 2020:p5 (Access) -> 2021:p5 (Access).
+    rank2021:p5 -> rank2022:p5 [color="#E65100"];
+    rank2022:p5 -> rank2023:p5 [color="#E65100"];
     rank2023:p5 -> rank2024:p2 [color="#E65100"];
     rank2024:p2 -> rank2025:p5 [color="#E65100"];
     rank2025:p5 -> rank2026:p3 [color="#E65100"];
 
     // BWC 3: #4A148C (Purple)
-    rank2020:p3 -> rank2021:p3 [color="#4A148C", style=dashed];
-    rank2021:p3 -> rank2022:p3 [color="#4A148C"];
-    rank2022:p3 -> rank2023:p3 [color="#4A148C"];
+    rank2017:p2 -> rank2018:p2 [color="#4A148C"];
+    rank2018:p2 -> rank2019:p2 [color="#4A148C"];
+    rank2019:p2 -> rank2020:p3 [color="#4A148C", style=dashed];
+    rank2020:p3 -> rank2021:p2 [color="#4A148C"]; // 2021 p2 is Logic.
+    rank2021:p2 -> rank2022:p2 [color="#4A148C"];
+    rank2022:p2 -> rank2023:p3 [color="#4A148C"];
     rank2023:p3 -> rank2024:p3 [color="#4A148C"];
     rank2024:p3 -> rank2025:p4 [color="#4A148C"];
     rank2025:p4 -> rank2026:p4 [color="#4A148C"];
 
     // BWC 4: #00695C (Teal)
-    rank2020:p4 -> rank2021:p5 [color="#00695C", style=dashed];
-    rank2021:p5 -> rank2022:p5 [color="#00695C"];
-    rank2022:p5 -> rank2023:p2 [color="#00695C"];
+    rank2017:p5 -> rank2018:p5 [color="#00695C"];
+    rank2018:p5 -> rank2019:p5 [color="#00695C"];
+    rank2019:p5 -> rank2020:p4 [color="#00695C"];
+    rank2020:p4 -> rank2021:p4 [color="#00695C"]; // 2021 p4 is Input? No, 2021 p4 is Input. Yes.
+    rank2021:p4 -> rank2022:p4 [color="#00695C"];
+    rank2022:p4 -> rank2023:p2 [color="#00695C"];
     rank2023:p2 -> rank2024:p6 [color="#00695C"];
     rank2024:p6 -> rank2025:p7 [color="#00695C"];
     rank2025:p7 -> rank2026:p7 [color="#00695C"];
 
     // BWC 5: #827717 (Olive/Lime)
-    rank2020:p2 -> rank2021:p4 [color="#827717"];
-    rank2021:p4 -> rank2022:p4 [color="#827717"];
-    rank2022:p4 -> rank2023:p4 [color="#827717"];
+    rank2017:p4 -> rank2018:p4 [color="#827717"];
+    rank2018:p4 -> rank2019:p4 [color="#827717"];
+    rank2019:p4 -> rank2020:p2 [color="#827717", style=dashed];
+    rank2020:p2 -> rank2021:p3 [color="#827717"]; // 2021 p3 is Econ.
+    rank2021:p3 -> rank2022:p3 [color="#827717"];
+    rank2022:p3 -> rank2023:p4 [color="#827717"];
     rank2023:p4 -> rank2024:p4 [color="#827717"];
     rank2024:p4 -> rank2025:p3 [color="#827717"];
     rank2025:p3 -> rank2026:p5 [color="#827717"];
 
     // BWC 6: #880E4F (Magenta)
+    rank2017:p6 -> rank2018:p6 [color="#880E4F"];
+    rank2018:p6 -> rank2019:p6 [color="#880E4F"];
+    rank2019:p6 -> rank2020:p6 [color="#880E4F"];
     rank2020:p6 -> rank2021:p6 [color="#880E4F"];
-    rank2021:p6 -> rank2022:p7 [color="#880E4F"];
-    rank2022:p7 -> rank2023:p6 [color="#880E4F"];
+    rank2021:p6 -> rank2022:p6 [color="#880E4F"];
+    rank2022:p6 -> rank2023:p6 [color="#880E4F"]; // 2023 p6 is Arithmetic.
     rank2023:p6 -> rank2024:p5 [color="#880E4F"];
     rank2024:p5 -> rank2025:p2 [color="#880E4F"];
     rank2025:p2 -> rank2026:p2 [color="#880E4F"];
 
     // BWC 7: #5D4037 (Brown)
+    rank2017:p7 -> rank2018:p7 [color="#5D4037"];
+    rank2018:p7 -> rank2019:p7 [color="#5D4037"];
+    rank2019:p7 -> rank2020:p7 [color="#5D4037"];
     rank2020:p7 -> rank2021:p7 [color="#5D4037"];
-    rank2021:p7 -> rank2022:p8 [color="#5D4037"];
-    rank2022:p8 -> rank2023:p8 [color="#5D4037"];
-    rank2023:p8 -> rank2024:p7 [color="#5D4037"];
+    rank2021:p7 -> rank2022:p7 [color="#5D4037"];
+    rank2022:p7 -> rank2023:p7 [color="#5D4037"];
+    rank2023:p7 -> rank2024:p7 [color="#5D4037"];
     rank2024:p7 -> rank2025:p6 [color="#5D4037"];
     rank2025:p6 -> rank2026:p8 [color="#5D4037"];
 
     // BWC 8: #616161 (Gray)
+    rank2017:p8 -> rank2018:p8 [color="#616161"];
+    rank2018:p8 -> rank2019:p8 [color="#616161"];
+    rank2019:p8 -> rank2020:p8 [color="#616161"];
     rank2020:p8 -> rank2021:p8 [color="#616161"];
-    rank2021:p8 -> rank2022:p6 [color="#616161"];
-    rank2022:p6 -> rank2023:p7 [color="#616161"];
-    rank2023:p7 -> rank2024:p8 [color="#616161"];
+    rank2021:p8 -> rank2022:p8 [color="#616161"];
+    rank2022:p8 -> rank2023:p8 [color="#616161"];
+    rank2023:p8 -> rank2024:p8 [color="#616161"];
     rank2024:p8 -> rank2025:p8 [color="#616161"];
     rank2025:p8 -> rank2026:p9 [color="#616161"];
 
     // BWC 9: #EF6C00 (Amber)
+    rank2017:p9 -> rank2018:p9 [color="#EF6C00", style=dashed];
+    rank2018:p9 -> rank2019:p9 [color="#EF6C00", style=dashed];
+    rank2019:p9 -> rank2020:p9 [color="#EF6C00", style=dashed];
     rank2020:p9 -> rank2021:p9 [color="#EF6C00", style=dashed];
     rank2021:p9 -> rank2022:p9 [color="#EF6C00", style=dashed];
     rank2022:p9 -> rank2023:p9 [color="#EF6C00", style=dashed];
@@ -269,6 +374,9 @@ digraph BWC_Evolution_2020_2026 {
     rank2025:p9 -> rank2026:p10 [color="#EF6C00", style=dashed];
 
     // BWC 10: #B71C1C (Dark Red)
+    rank2017:p10 -> rank2018:p10 [color="#B71C1C", style=dashed];
+    rank2018:p10 -> rank2019:p10 [color="#B71C1C", style=dashed];
+    rank2019:p10 -> rank2020:p10 [color="#B71C1C", style=dashed];
     rank2020:p10 -> rank2021:p10 [color="#B71C1C", style=dashed];
     rank2021:p10 -> rank2022:p10 [color="#B71C1C", style=dashed];
     rank2022:p10 -> rank2023:p10 [color="#B71C1C", style=dashed];
@@ -277,39 +385,13 @@ digraph BWC_Evolution_2020_2026 {
     rank2025:p10 -> rank2026:p6 [color="#B71C1C", style=dashed];
 
     // BWC 11: #0D47A1 (Blue)
+    rank2017:p11 -> rank2018:p11 [color="#0D47A1"];
+    rank2018:p11 -> rank2019:p11 [color="#0D47A1"];
+    rank2019:p11 -> rank2020:p11 [color="#0D47A1"];
     rank2020:p11 -> rank2021:p11 [color="#0D47A1"];
     rank2021:p11 -> rank2022:p11 [color="#0D47A1"];
     rank2022:p11 -> rank2023:p11 [color="#0D47A1"];
     rank2023:p11 -> rank2024:p11 [color="#0D47A1"];
     rank2024:p11 -> rank2025:p11 [color="#0D47A1"];
     rank2025:p11 -> rank2026:p11 [color="#0D47A1"];
-
-    // 2026
-    subgraph cluster_2026 {
-        label = "2026 (YTD) - 14 Incidents";
-        style = "rounded,filled";
-        fillcolor = "#f8f9fa";
-        color = "#e9ecef";
-
-        rank2026 [label=<
-            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
-                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#880E4F"><B>#2: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$26.6M</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$16.8M</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#4A148C"><B>#4: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$8.7M</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#827717"><B>#5: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$8.0M</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#B71C1C"><B>#6: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$336K</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#00695C"><B>#7: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#5D4037"><B>#8: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#616161"><B>#9: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#EF6C00"><B>#10: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
-                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
-                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$60.4M</B></TD></TR>
-            </TABLE>
-        >];
-    }
-
-    // Last Update Node
-    last_update [label="Last Update:\nFeb 02, 2026", shape=note, style=filled, fillcolor="#fff3cd", fontcolor="#000000", fontsize=10, margin=0.2];
-    rank2026 -> last_update [style=invis];
 }
