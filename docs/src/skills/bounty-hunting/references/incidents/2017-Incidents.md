@@ -17,7 +17,7 @@ This database uses the [BWC](../BWC/BWC.md) to classify Contract Vulnerability I
   - The Parity multi-signature wallets relied on a single shared library contract for their logic (acting as the implementation for many light proxies).
   - This library contract was deployed but left uninitialized, meaning it had no owner.
   - A user (`devops199`) was able to call the `initWallet` function on the library contract itself, effectively claiming ownership of the standard library.
-  - The user then triggered the `kill()` function, which executed `selfdestruct`.
+  - The user then triggered the `kill()` function (Tx: [0x47f7...f690](https://etherscan.io/tx/0x47f7cff7a5e671884629c93b368cb18f58a993f4b19c2a53a8662e3f1482f690)), which executed `selfdestruct`.
   - The destruction of the library contract rendered all dependent multi-sig wallets non-functional, permanently freezing the funds held within them.
 - **References**:
   - [I accidentally killed it and evaporated $300 million](https://medium.com/cybermiles/i-accidentally-killed-it-and-evaporated-300-million-6b975dc1f76b)
