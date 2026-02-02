@@ -223,6 +223,15 @@ Use EIP-7702 to execute transactions from a compromised EOA without funding it w
     *   Log a brief description of the incident using the existing template.
     *   When creating a log entry be sure to suggest improvements to the bwc if the incident described does not neatly fit into the current bwc structure.
     *   Append the entry to the appropriate year's log file.
+    *   **Visuals:**
+        *   Update `docs/src/assets/BWC.dot`:
+            *   Update the incident count in the cluster label.
+            *   Update dollar amounts for the specific BWC category.
+            *   **Re-rank** the categories in the table by value lost (descending).
+            *   **Update Rank Labels:** Ensure the labels (e.g., `#1`, `#2`) match the new row order (1 to 11).
+            *   **Update Edges:** Update the graph edges at the bottom of the file to connect to the correct new ports (rows) for the current year.
+            *   Update the **"Last Update"** date at the bottom of the graph.
+        *   Regenerate `docs/src/assets/BWC.png` from the updated dot file.
     *   **Note:** The dates do not have to be chronological.
     *   **Numbering:** Append the incident number according to the month in descending order, with the latest incident having a higher count. Example: `## 2025-11-20 - {Incident Number}`
     *   [2026 Incidents](references/incidents/2026-Incidents.md)
