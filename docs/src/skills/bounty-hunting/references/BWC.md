@@ -8,7 +8,7 @@ Authors: [@BBHGuild](https://x.com/BBHGuild)
 
 ## BWC Top 11
 
-[![BWC Evolution Chart (2017-2026)](../../../assets/BWC.png)](../../../assets/BWC.png)
+[![BWC Evolution Chart (2016-2026)](../../../assets/BWC.png)](../../../assets/BWC.png)
 
 | Blockchain Weakness Classification | | | Description | Exploit Methods | Mitigation |
 | :--- | :--- | :--- | :--- | :--- | :--- |
