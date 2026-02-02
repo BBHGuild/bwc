@@ -36,6 +36,7 @@ digraph BWC_Evolution_2020_2026 {
                 <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999"><B>WIP</B></FONT></TD></TR>
             </TABLE>
         >];
     }
@@ -60,6 +61,7 @@ digraph BWC_Evolution_2020_2026 {
                 <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999"><B>WIP</B></FONT></TD></TR>
             </TABLE>
         >];
     }
@@ -84,6 +86,7 @@ digraph BWC_Evolution_2020_2026 {
                 <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999"><B>WIP</B></FONT></TD></TR>
             </TABLE>
         >];
     }
@@ -108,6 +111,7 @@ digraph BWC_Evolution_2020_2026 {
                 <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999">WIP</FONT></TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><FONT COLOR="#999999"><B>WIP</B></FONT></TD></TR>
             </TABLE>
         >];
     }
@@ -132,6 +136,7 @@ digraph BWC_Evolution_2020_2026 {
                 <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$169.7M</B></TD></TR>
             </TABLE>
         >];
     }
@@ -156,6 +161,7 @@ digraph BWC_Evolution_2020_2026 {
                 <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$322.9M</B></TD></TR>
             </TABLE>
         >];
     }
@@ -180,6 +186,7 @@ digraph BWC_Evolution_2020_2026 {
                 <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#616161"><B>#9: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#EF6C00"><B>#10: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
                 <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$60.4M</B></TD></TR>
             </TABLE>
         >];
     }
@@ -254,18 +261,18 @@ digraph BWC_Evolution_2020_2026 {
     rank2025:p8 -> rank2026:p9 [color="#616161"];
 
     // BWC 9: #EF6C00 (Amber)
-    rank2020:p9 -> rank2021:p9 [color="#EF6C00"];
-    rank2021:p9 -> rank2022:p9 [color="#EF6C00"];
-    rank2022:p9 -> rank2023:p9 [color="#EF6C00"];
-    rank2023:p9 -> rank2024:p9 [color="#EF6C00"];
+    rank2020:p9 -> rank2021:p9 [color="#EF6C00", style=dashed];
+    rank2021:p9 -> rank2022:p9 [color="#EF6C00", style=dashed];
+    rank2022:p9 -> rank2023:p9 [color="#EF6C00", style=dashed];
+    rank2023:p9 -> rank2024:p9 [color="#EF6C00", style=dashed];
     rank2024:p9 -> rank2025:p9 [color="#EF6C00", style=dashed];
     rank2025:p9 -> rank2026:p10 [color="#EF6C00", style=dashed];
 
     // BWC 10: #B71C1C (Dark Red)
-    rank2020:p10 -> rank2021:p10 [color="#B71C1C"];
-    rank2021:p10 -> rank2022:p10 [color="#B71C1C"];
-    rank2022:p10 -> rank2023:p10 [color="#B71C1C"];
-    rank2023:p10 -> rank2024:p10 [color="#B71C1C"];
+    rank2020:p10 -> rank2021:p10 [color="#B71C1C", style=dashed];
+    rank2021:p10 -> rank2022:p10 [color="#B71C1C", style=dashed];
+    rank2022:p10 -> rank2023:p10 [color="#B71C1C", style=dashed];
+    rank2023:p10 -> rank2024:p10 [color="#B71C1C", style=dashed];
     rank2024:p10 -> rank2025:p10 [color="#B71C1C", style=dashed];
     rank2025:p10 -> rank2026:p6 [color="#B71C1C", style=dashed];
 
