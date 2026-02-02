@@ -221,6 +221,7 @@ Use EIP-7702 to execute transactions from a compromised EOA without funding it w
 
 1.  **Documentation:** 
     *   Log a brief description of the incident using the existing template.
+    *   When creating a log entry be sure to suggest improvements to the bwc if the incident described does not neatly fit into the current bwc structure.
     *   Append the entry to the appropriate year's log file.
     *   **Note:** The dates do not have to be chronological.
     *   **Numbering:** Append the incident number according to the month in descending order, with the latest incident having a higher count. Example: `## 2025-11-20 - {Incident Number}`
