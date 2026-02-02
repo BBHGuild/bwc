@@ -1,0 +1,239 @@
+digraph BWC_Evolution_2016_2021 {
+    graph [rankdir=LR, splines=curved, bgcolor="white", fontname="Arial", ranksep=1.5, nodesep=0.3, label="BWC Top 11 (Blockchain Weakness Classification)", labelloc="t", fontsize=20];
+    node [shape=none, fontname="Arial", fontsize=12];
+    edge [penwidth=3, arrowsize=0.8, opacity=0.8];
+
+    // --- CLUSTERS & NODES ---
+
+    // 2016
+    subgraph cluster_2016 {
+        label = "2016 - 1 Incident";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2016 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$60M</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#827717"><B>#4: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#00695C"><B>#5: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$60M</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    // 2017
+    subgraph cluster_2017 {
+        label = "2017 - 1 Incident";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2017 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$300M</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#827717"><B>#4: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#00695C"><B>#5: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$300M</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    // 2018
+    subgraph cluster_2018 {
+        label = "2018 - 0 Incidents";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2018 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#827717"><B>#4: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#00695C"><B>#5: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$0</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    // 2019
+    subgraph cluster_2019 {
+        label = "2019 - 0 Incidents";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2019 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#E65100"><B>#3: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#827717"><B>#4: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#00695C"><B>#5: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$0</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+
+    // 2020
+    subgraph cluster_2020 {
+        label = "2020 - 1 Incident";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2020 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#827717"><B>#2: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$8.3M</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#4A148C"><B>#3: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#00695C"><B>#4: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#E65100"><B>#5: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$8.3M</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    // 2021
+    subgraph cluster_2021 {
+        label = "2021 - 0 Incidents";
+        style = "rounded,filled";
+        fillcolor = "#f8f9fa";
+        color = "#e9ecef";
+
+        rank2021 [label=<
+            <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+                <TR><TD ALIGN="LEFT" PORT="p1"><FONT COLOR="#D7263D"><B>#1: Ecosystem &amp; Off-Chain</B></FONT></TD><TD ALIGN="RIGHT"><B>$∞</B></TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p2"><FONT COLOR="#4A148C"><B>#2: Smart Contract Logic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p3"><FONT COLOR="#827717"><B>#3: Economic &amp; Game-Theoretic</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p4"><FONT COLOR="#00695C"><B>#4: Input &amp; Data Validation</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p5"><FONT COLOR="#E65100"><B>#5: Access Control</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p6"><FONT COLOR="#880E4F"><B>#6: Arithmetic &amp; Numeric</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p7"><FONT COLOR="#5D4037"><B>#7: Low-Level &amp; EVM</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p8"><FONT COLOR="#616161"><B>#8: Denial of Service</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p9"><FONT COLOR="#EF6C00"><B>#9: Emerging Technology</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p10"><FONT COLOR="#B71C1C"><B>#10: Network &amp; Consensus</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT" PORT="p11"><FONT COLOR="#0D47A1"><B>#11: Privacy &amp; Regulatory</B></FONT></TD><TD ALIGN="RIGHT">$0</TD></TR>
+                <TR><TD ALIGN="LEFT"><B>Total Value Lost</B></TD><TD ALIGN="RIGHT"><B>$0</B></TD></TR>
+            </TABLE>
+        >];
+    }
+
+    last_update [label="Last Update:\nFeb 02, 2026", shape=note, style=filled, fillcolor="#fff3cd", fontcolor="#000000", fontsize=10, margin=0.2];
+
+    // BWC 1: Ecosystem & Offchain
+    rank2016:p1 -> rank2017:p1 [color="#D7263D"];
+    rank2017:p1 -> rank2018:p1 [color="#D7263D"];
+    rank2018:p1 -> rank2019:p1 [color="#D7263D"];
+    rank2019:p1 -> rank2020:p1 [color="#D7263D"];
+    rank2020:p1 -> rank2021:p1 [color="#D7263D"];
+
+    // BWC 3: SmartContract Logic
+    rank2016:p2 -> rank2017:p2 [color="#4A148C"];
+    rank2017:p2 -> rank2018:p2 [color="#4A148C"];
+    rank2018:p2 -> rank2019:p2 [color="#4A148C"];
+    rank2019:p2 -> rank2020:p3 [color="#4A148C"];
+    rank2020:p3 -> rank2021:p2 [color="#4A148C"];
+
+    // BWC 2: Access Control
+    rank2016:p3 -> rank2017:p3 [color="#E65100"];
+    rank2017:p3 -> rank2018:p3 [color="#E65100"];
+    rank2018:p3 -> rank2019:p3 [color="#E65100"];
+    rank2019:p3 -> rank2020:p3 [color="#E65100"];
+    rank2020:p3 -> rank2021:p5 [color="#E65100"];
+
+    // BWC 5: Economic & Game Theory
+    rank2016:p4 -> rank2017:p4 [color="#827717"];
+    rank2017:p4 -> rank2018:p4 [color="#827717"];
+    rank2018:p4 -> rank2019:p4 [color="#827717"];
+    rank2019:p4 -> rank2020:p2 [color="#827717"];
+    rank2020:p2 -> rank2021:p3 [color="#827717"];
+
+    // BWC 4: Input & Data Validation
+    rank2016:p5 -> rank2017:p5 [color="#00695C"];
+    rank2017:p5 -> rank2018:p5 [color="#00695C"];
+    rank2018:p5 -> rank2019:p5 [color="#00695C"];
+    rank2019:p5 -> rank2020:p4 [color="#00695C"];
+    rank2020:p4 -> rank2021:p4 [color="#00695C"];
+
+    // BWC 6: Arithimetic & Numeric
+    rank2016:p6 -> rank2017:p6 [color="#880E4F"];
+    rank2017:p6 -> rank2018:p6 [color="#880E4F"];
+    rank2018:p6 -> rank2019:p6 [color="#880E4F"];
+    rank2019:p6 -> rank2020:p6 [color="#880E4F"];
+    rank2020:p6 -> rank2021:p6 [color="#880E4F"];
+
+    // BWC 7: Low levl & EVM
+    rank2016:p7 -> rank2017:p7 [color="#5D4037"];
+    rank2017:p7 -> rank2018:p7 [color="#5D4037"];
+    rank2018:p7 -> rank2019:p7 [color="#5D4037"];
+    rank2019:p7 -> rank2020:p7 [color="#5D4037"];
+    rank2020:p7 -> rank2021:p7 [color="#5D4037"];
+
+    // BWC 8: #616161 (Gray)
+    rank2016:p8 -> rank2017:p8 [color="#616161"];
+    rank2017:p8 -> rank2018:p8 [color="#616161"];
+    rank2018:p8 -> rank2019:p8 [color="#616161"];
+    rank2019:p8 -> rank2020:p8 [color="#616161"];
+    rank2020:p8 -> rank2021:p8 [color="#616161"];
+
+    // BWC 9: #EF6C00 (Amber)
+    edge [style=dashed]; // Switch style for dashed lines
+    rank2016:p9 -> rank2017:p9 [color="#EF6C00"];
+    rank2017:p9 -> rank2018:p9 [color="#EF6C00"];
+    rank2018:p9 -> rank2019:p9 [color="#EF6C00"];
+    rank2019:p9 -> rank2020:p9 [color="#EF6C00"];
+    rank2020:p9 -> rank2021:p9 [color="#EF6C00"];
+
+    // BWC 10: #B71C1C (Dark Red)
+    rank2016:p10 -> rank2017:p10 [color="#B71C1C"];
+    rank2017:p10 -> rank2018:p10 [color="#B71C1C"];
+    rank2018:p10 -> rank2019:p10 [color="#B71C1C"];
+    rank2019:p10 -> rank2020:p10 [color="#B71C1C"];
+    rank2020:p10 -> rank2021:p10 [color="#B71C1C"];
+
+    // BWC 11: #0D47A1 (Blue)
+    edge [style=solid]; // Reset to solid
+    rank2016:p11 -> rank2017:p11 [color="#0D47A1"];
+    rank2017:p11 -> rank2018:p11 [color="#0D47A1"];
+    rank2018:p11 -> rank2019:p11 [color="#0D47A1"];
+    rank2019:p11 -> rank2020:p11 [color="#0D47A1"];
+    rank2020:p11 -> rank2021:p11 [color="#0D47A1"];
+}

@@ -224,7 +224,8 @@ Use EIP-7702 to execute transactions from a compromised EOA without funding it w
     *   When creating a log entry be sure to suggest improvements to the bwc if the incident described does not neatly fit into the current bwc structure.
     *   Append the entry to the appropriate year's log file.
     *   **Visuals:**
-        *   Update `docs/src/assets/BWC.dot`:
+        *   Update `references/assets/BWC-2016-2021.dot` and/or `references/assets/BWC-2021-2026.dot`:
+            *   *Note:* The files are separated because compiling a combined dot image exceeds exponential time limits. If the incident affects 2021, update both files.
             *   Update the incident count in the cluster label.
             *   Update dollar amounts for the specific BWC category.
             *   **Re-rank** the categories in the table by value lost (descending).
@@ -232,7 +233,7 @@ Use EIP-7702 to execute transactions from a compromised EOA without funding it w
             *   **Update Edges:** Update the graph edges at the bottom of the file to connect to the correct new ports (rows) for the current year.
             *   **Update Totals:** Recalculate and update the "Total Value Lost" at the bottom of the table.
             *   Update the **"Last Update"** date at the bottom of the graph.
-        *   Regenerate `docs/src/assets/BWC.png` from the updated dot file.
+        *   Regenerate the corresponding PNG file(s) (`references/assets/BWC-2016-2021.png` or `references/assets/BWC-2021-2026.png`).
     *   **Note:** The dates do not have to be chronological.
     *   **Numbering:** Append the incident number according to the month in descending order, with the latest incident having a higher count. Example: `## 2025-11-20 - {Incident Number}`
     *   [2026 Incidents](references/incidents/2026-Incidents.md)
