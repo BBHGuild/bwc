@@ -893,14 +893,14 @@ This database uses the [BWC](../BWC/BWC.md) to classify Contract Vulnerability I
 
 - **Date**: 2025-02-03
 - **Project**: Bybit (Centralized Exchange)
-- **Value Lost**: ~$1,400,000,000 (401,347 ETH)
+- **Value Lost**: ~\$1,400,000,000 (401,347 ETH)
 - **Chain**: Ethereum
 - **BWC**:
   - **Broader Classification**: `BWC 1: Ecosystem & Off-Chain Risks`
   - **Primary Classification**: `BWC 1.4.4: Supply Chain Attacks (Compromised Dev Machine)`
   - **Secondary Classification**: `BWC 1.3.3: Front-End Hijack/Spoofing (UI Manipulation)`
 - **Description**:
-  - Bybit suffered a massive $1.4B theft from its cold wallet due to a sophisticated supply chain attack targeting its multi-signature setup.
+  - Bybit suffered a massive \$1.4B theft from its cold wallet due to a sophisticated supply chain attack targeting its multi-signature setup.
   - **Vulnerability**: The attack did not exploit the smart contracts directly but rather the **Safe Wallet user interface via a supply chain compromise**. A developer's machine was compromised, allowing attackers to inject malicious JavaScript into the Safe UI build.
   - **Attack Flow**:
     1. **Injection**: Malicious JS was injected into the Safe UI via a compromised dev machine.

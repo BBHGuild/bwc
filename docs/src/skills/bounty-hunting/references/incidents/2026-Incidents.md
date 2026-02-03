@@ -8,19 +8,19 @@ This database uses the [BWC](../BWC/BWC.md) to classify Contract Vulnerability I
 
 - **Date**: 2026-02-02
 - **Project**: [Matcha Meta (SwapNet)](https://x.com/matchametaxyz)
-- **Value Lost**: ~$16,800,000
+- **Value Lost**: ~\$16,800,000
 - **Chain**: Base
 - **BWC**:
   - **Broader Classification**: `BWC 2: Access Control Vulnerabilities`
   - **Primary Classification**: `BWC 2.2.3: Untrusted Arbitrary Calls`
   - **Secondary Classification**: `BWC 2.2.1: Unsafe Token Approvals`
 - **Description**:
-  - Matcha Meta's SwapNet router was exploited for ~$16.8M (later analysis suggests ~$17M) due to an arbitrary call vulnerability in a closed-source contract.
+  - Matcha Meta's SwapNet router was exploited for ~\$16.8M (later analysis suggests ~\$17M) due to an arbitrary call vulnerability in a closed-source contract.
   - **Vulnerability**: The SwapNet router failed to validate inputs properly, allowing unauthorized arbitrary calls. The attacker used this to force the contract to call `transferFrom` on various tokens, draining funds from users who had granted infinite approvals to the router.
   - **Attack Flow**:
     1. **Reconnaissance**: The attacker identified users with infinite approvals to the SwapNet router.
     2. **Execution**: The attacker exploited the arbitrary call flaw to inject calls to `token.transferFrom(victim, attacker, amount)`, bypassing the router's intended logic.
-    3. **Laundering**: Funds were swapped for USDC (~$10.5M) and then ~3,655 ETH on Base, which was subsequently bridged to Ethereum Mainnet.
+    3. **Laundering**: Funds were swapped for USDC (~\$10.5M) and then ~3,655 ETH on Base, which was subsequently bridged to Ethereum Mainnet.
 - **References**:
   - [BlockSec Analysis](https://blocksec.com/blog/17m-closed-source-smart-contract-exploit-arbitrary-call-swapnet-aperture)
   - [News Article (TimesCrypto)](https://timescrypto.com/cryptonews/blockchain/matcha-meta-exploit-drained-16-8m-via-compromised-router/article-21194/)
