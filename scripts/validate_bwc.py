@@ -74,14 +74,12 @@ def main():
     errors = scan_incidents(incidents_dir, valid_ids)
 
     if errors:
-        print("
-❌ Validation Failed! Found invalid BWC references:")
+        print("\n❌ Validation Failed! Found invalid BWC references:")
         for err in errors:
             print(err)
         sys.exit(1)
     else:
-        print("
-✅ All BWC references are valid.")
+        print("\n✅ All BWC references are valid.")
         sys.exit(0)
 
 if __name__ == "__main__":
