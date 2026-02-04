@@ -226,6 +226,42 @@
     z-index: 30;
 }
 
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: var(--sidebar-bg);
+    color: var(--fg);
+    border: 1px solid var(--table-border-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px; /* Center icon vertically */
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: opacity 0.3s, background-color 0.3s;
+}
+
+#back-to-top:hover {
+    background-color: var(--theme-hover);
+}
+
+@media (max-width: 768px) {
+    #back-to-top {
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+    }
+}
+
 /* Widen the main content area to fill the screen */
 .content, .content-wrap {
     max-width: 100% !important; /* Override mdbook's default ~750px limit */
