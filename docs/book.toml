@@ -2,7 +2,8 @@
 authors = ["Emile Sean"]
 language = "en"
 src = "src"
-title = "Library"
+title = "Blockchain Weakness Classification (BWC)"
+description = "A comprehensive taxonomy for EVM vulnerabilities, mapped to 10 years of incident analysis (2016-2026)."
 
 [output.html]
 no_section_label = true
