@@ -148,6 +148,17 @@ if (document.getElementsByClassName("header").length <= 1) {
             });
         }
 
+        // Wrap tables for horizontal scrolling and sticky headers
+        const tables = document.querySelectorAll('.content table');
+        tables.forEach(table => {
+            if (!table.parentElement.classList.contains('table-wrapper')) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'table-wrapper';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            }
+        });
+
         updatePageToc();
     });
 

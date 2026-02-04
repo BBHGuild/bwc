@@ -185,21 +185,25 @@
 }
 
 /* Table formatting for horizontal scrolling with column width control */
-.page-wrapper table {
-    display: block;
+.table-wrapper {
     overflow-x: auto;
-    width: 100%;            /* Force table to take full container width */
-    max-width: 100%;        /* Prevent overflow beyond container */
+    width: 100%;
+}
+
+.page-wrapper table {
+    width: 100%;
+    border-collapse: collapse; /* Ensure borders behave */
 }
 
 /* Sticky Table Headers */
 .page-wrapper table thead tr th {
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
     background-color: var(--bg); /* Ensure header isn't transparent */
     color: var(--fg);
     border-bottom: 2px solid var(--table-border-color);
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); /* Optional: shadow to define header bottom */
 }
 
 /* Widen the main content area to fill the screen */
