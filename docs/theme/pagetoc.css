@@ -186,13 +186,18 @@
 
 /* Table formatting for horizontal scrolling with column width control */
 .table-wrapper {
-    overflow-x: auto;
+    overflow: auto;         /* Enable both X and Y scrolling */
+    max-height: 85vh;       /* Limit height to viewport to create scrolling context */
     width: 100%;
+    margin-bottom: 1.5em;
+    border: 1px solid var(--table-border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .page-wrapper table {
     width: 100%;
-    border-collapse: collapse; /* Ensure borders behave */
+    border-collapse: separate; /* Required for sticky borders in some browsers */
+    border-spacing: 0;
 }
 
 /* Sticky Table Headers */
@@ -203,7 +208,22 @@
     background-color: var(--bg); /* Ensure header isn't transparent */
     color: var(--fg);
     border-bottom: 2px solid var(--table-border-color);
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4); /* Optional: shadow to define header bottom */
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+/* Sticky First Column (Optional: Improves readability for wide tables) */
+.page-wrapper table tbody td:first-child,
+.page-wrapper table thead th:first-child {
+    position: sticky;
+    left: 0;
+    background-color: var(--bg);
+    z-index: 15; /* Below header, above content */
+    border-right: 1px solid var(--table-border-color);
+}
+
+/* Header of first column needs higher z-index to stay on top of both scrolls */
+.page-wrapper table thead th:first-child {
+    z-index: 30;
 }
 
 /* Widen the main content area to fill the screen */
