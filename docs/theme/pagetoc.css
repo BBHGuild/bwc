@@ -188,6 +188,30 @@
 .page-wrapper table {
     display: block;
     overflow-x: auto;
+    width: 100%;            /* Force table to take full container width */
+    max-width: 100%;        /* Prevent overflow beyond container */
+}
+
+/* Sticky Table Headers */
+.page-wrapper table thead tr th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--bg); /* Ensure header isn't transparent */
+    color: var(--fg);
+    border-bottom: 2px solid var(--table-border-color);
+}
+
+/* Widen the main content area to fill the screen */
+.content, .content-wrap {
+    max-width: 100% !important; /* Override mdbook's default ~750px limit */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Ensure the main container expands with the sidebar state */
+main {
+    width: 100%;
 }
 
 .page-wrapper table th, .page-wrapper table td {
