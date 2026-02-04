@@ -1,0 +1,1885 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>2024 Incidents - Blockchain Weakness Classification (BWC)</title>
+
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HDV7VPQ8R3"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-HDV7VPQ8R3');
+        </script>
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="A comprehensive taxonomy for EVM vulnerabilities, mapped to 10 years of incident analysis (2016-2026).">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="2024 Incidents - Blockchain Weakness Classification (BWC)">
+        <meta name="twitter:description" content="A comprehensive taxonomy for EVM vulnerabilities, mapped to 10 years of incident analysis (2016-2026).">
+        <meta name="twitter:image" content="https://bbhguild.github.io/bwc/skills/bounty-hunting/references/assets/BWC-2021-2026.png">
+
+        <link rel="icon" href="../../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../../favicon.png">
+        <link rel="stylesheet" href="../../../../css/variables.css">
+        <link rel="stylesheet" href="../../../../css/general.css">
+        <link rel="stylesheet" href="../../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../../../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../../../theme/pagetoc.css">
+        <link rel="stylesheet" href="../../../../theme/collapsible.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Blockchain Weakness Classification (BWC)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/BBHGuild/bwc/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://x.com/BBHGuild/" title="X (Twitter)" aria-label="X (Twitter)">
+                            <i id="x-link" class="fa fa-twitter"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="content-wrap">
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="2024-evm-contract-vulnerability-incidents-classification--analysis"><a class="header" href="#2024-evm-contract-vulnerability-incidents-classification--analysis">2024 EVM Contract Vulnerability Incidents Classification &amp; Analysis.</a></h1>
+<p>This database uses the <a href="../../../../README.html">BWC</a> to classify Contract Vulnerability Incidents. Note off-chain issues have been excluded they're the most prevalent and resulted in more values lost. Humans remains to be the weakest point human stupidity or ingenuity(depending on how you look at it) could be infinite. It's unfeasible to track it.</p>
+<hr />
+<h2 id="2024-11-10---3"><a class="header" href="#2024-11-10---3">2024-11-10 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-11-10</li>
+<li><strong>Project</strong>: BGM Token</li>
+<li><strong>Value Lost</strong>: Unknown (Liquidity Pool Drained)</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 1.3.8: Sybil Attacks</code>, <code>BWC 5.2.1: Price Manipulation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The BGM token was exploited due to a flawed "transfer reward" mechanism. The protocol rewarded users for every transfer, allocating claims to the sender, recipient, and referrers, funded by the project's liquidity pool. An attacker exploited this by conducting a Sybil attack, creating numerous accounts and executing artificial transfers between them to farm rewards. After inflating their BGM holdings, the attacker withdrew the rewards and sold them into the pool, draining the USDT liquidity.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/TenArmorAlert/status/1855652562915201038">TenArmor Alert</a></li>
+<li><a href="https://www.contractreader.io/contract/bsc/0x42646478b25317160e0dc8db413991277e4bb3c2#erc20-1-7-269">Contract Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-11-24---2"><a class="header" href="#2024-11-24---2">2024-11-24 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-11-24 (Disclosure Date)</li>
+<li><strong>Project</strong>: Zyfy (PermissionlessPaymaster)</li>
+<li><strong>Value Lost</strong>: $0 (Vulnerability Disclosure)</li>
+<li><strong>Chain</strong>: zkSync</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.5: Broken State Adjustment</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.1.2: Back-Running</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A vulnerability was identified in Zyfy's Paymaster contract on zkSync regarding gas refund accounting.</li>
+<li><strong>The Mechanism:</strong> On zkSync, unused gas is refunded to the paymaster. The contract tracked the intended recipient of this pending refund in a state variable called <code>previousManager</code>.</li>
+<li><strong>The Flaw:</strong> The <code>selfRevokeSigner</code> function allowed a user to update <code>previousManager</code> immediately without checking if a refund was pending for a different manager.</li>
+<li><strong>The Exploit:</strong> An attacker could back-run a transaction sponsored by a legitimate manager. By calling <code>selfRevokeSigner</code> immediately after the sponsored transaction (but before the refund logic was finalized by <code>updateRefund</code> in the next interaction), the attacker overwrote <code>previousManager</code> with their own address. Consequently, the gas refund generated by the legitimate manager's transaction was incorrectly credited to the attacker.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/cantinaxyz/status/1860745353299111979">Cantina Vulnerability Walkthrough</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-11-16---1"><a class="header" href="#2024-11-16---1">2024-11-16 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-11-16</li>
+<li><strong>Project</strong>: Polter Finance</li>
+<li><strong>Value Lost</strong>: ~$8,700,000</li>
+<li><strong>Chain</strong>: Fantom</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 4: Input &amp; Data Validation Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 4.2.2: Oracle Manipulation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Polter Finance suffered a classic oracle manipulation attack due to its reliance on spot prices for asset valuation.</li>
+<li><strong>The Flaw:</strong> The protocol determined the price of BOO tokens by averaging the spot prices from SpookySwap V2 and V3 pools. It lacked robust mechanisms like Time-Weighted Average Price (TWAP) or external Chainlink feeds for validation.</li>
+<li><strong>The Exploit:</strong> An attacker used flash loans to massively skew the reserves in the underlying SpookySwap pools, artificially inflating the spot price of BOO. Because Polter's oracle blindly accepted this manipulated data, the system valued the attacker's small BOO deposit at an astronomical rate. This allowed the attacker to borrow effectively all assets held by the protocol against this inflated collateral.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://rekt.news/polter-finance-rekt/">Rekt News - Polter Finance Rekt</a></li>
+<li><a href="https://certik.com/resources/blog/polter-finance-incident-analysis">CertiK Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-10-24---6"><a class="header" href="#2024-10-24---6">2024-10-24 - 6</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-10-24</li>
+<li><strong>Project</strong>: Ramses Exchange</li>
+<li><strong>Value Lost</strong>: ~$93,000</li>
+<li><strong>Chain</strong>: Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.2.5: Broken State Adjustment</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Ramses Exchange was exploited due to multiple failures in its reward distribution logic for veNFTs.</li>
+<li><strong>State Adjustment Failure:</strong> The protocol failed to decrease the <code>tokenTotalSupplyByPeriod</code> variable when rewards were claimed. This allowed the attacker to claim rewards without reducing the tracked supply, enabling repeated claims.</li>
+<li><strong>Token ID Manipulation:</strong> The attacker bypassed claim limits by minting new veNFTs with new Token IDs, effectively resetting their claim status while using the same underlying capital.</li>
+<li><strong>Missing Validation:</strong> The <code>getPeriodReward</code> function failed to validate that the requested reward period matched the current block timestamp, allowing the attacker to claim rewards for past periods.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.verichains.io/p/ramses-exchange-hack-analysis">Verichains Ramses Hack Analysis</a></li>
+<li><a href="https://medium.com/coinmonks/unraveling-the-90k-mystery-inside-ramses-exchanges-reward-exploit-3972812b2eff">Medium Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-10-28---5"><a class="header" href="#2024-10-28---5">2024-10-28 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-10-28 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Royco Protocol</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Ethereum, Arbitrum, Base</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.8: Faulty Array &amp; List Handling</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in the Royco Protocol's <code>RecipeKernel</code> during a security review.</li>
+<li><strong>The Flaw:</strong> The protocol allowed Incentive Providers (IPs) to create offers with an array of reward tokens (<code>incentivesOffered</code>). However, the system failed to sanitize this array for duplicate token addresses.</li>
+<li><strong>The Exploit:</strong> An attacker could create an offer where the same reward token was listed multiple times (e.g., <code>[USDC, USDC]</code>). When an Action Provider (AP) filled the offer, the contract iterated through this array to distribute rewards. Because the tracking mechanism (<code>incentiveAmountsOffered</code>) summed the total rewards correctly but the distribution loop iterated over the <em>duplicate</em> keys, the system would pay out the full reward amount for <em>each</em> occurrence of the token in the array. This resulted in the AP receiving multiples of the intended reward (e.g., double the amount if listed twice), allowing them to drain funds from the kernel.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://solodit.cyfrin.io/issues/duplicate-incentive-tokens-in-ip-offers-allow-draining-of-funds-in-recipekernel-spearbit-none-royco-pdf">Spearbit / Cantina Audit Report</a></li>
+<li><a href="https://docs.royco.org/security/audits">Royco Security Review</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-10-31---4"><a class="header" href="#2024-10-31---4">2024-10-31 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-10-31 (Disclosure Date)</li>
+<li><strong>Project</strong>: DeFi Wonderland (opUSDC Bridge)</li>
+<li><strong>Value Lost</strong>: $0 (Vulnerability Disclosure)</li>
+<li><strong>Chain</strong>: OP Stack Chains</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 8: Denial of Service (DoS) Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 8.8: DoS in Cross-Chain Messaging Protocols</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 10.4: Protocol Upgrade-Induced Vulnerabilities</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical DoS vulnerability was identified in the opUSDC bridging standard, specifically regarding the migration path from "Bridged USDC" to "Native USDC."</li>
+<li><strong>The Mechanism:</strong> Bridging involves locking USDC on L1 and minting it on L2. If the L2 mint fails (e.g., Out Of Gas), the message is queued and can be replayed later.</li>
+<li><strong>The Flaw:</strong> The protocol allows for a "Migration" event where the L2 USDC token ownership is transferred to Circle to become native. Crucially, this revokes the Bridge Adapter's permission to mint.</li>
+<li><strong>The Lock:</strong> If a user has a pending/failed L2 mint transaction <em>at the moment</em> the migration occurs, the Bridge Adapter loses its minting rights before the user can replay the transaction. The replay will permanently revert (due to missing permissions), leaving the user's funds irretrievably locked in the L1 bridge contract.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/cantinaxyz/status/1851972587561324936">Cantina Vulnerability Walkthrough</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-10-05---3"><a class="header" href="#2024-10-05---3">2024-10-05 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-10-05</li>
+<li><strong>Project</strong>: AIZPT (AIZPT314)</li>
+<li><strong>Value Lost</strong>: ~$20,000</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 6: Arithmetic &amp; Numeric Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 6.4: Calculation Errors</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The AIZPT314 token contract was exploited due to a fundamental mathematical error in its custom trading logic.</li>
+<li><strong>The Flaw:</strong> The protocol implemented a flawed pricing formula (<code>token0Out = token1In * token0InContract / (token1In + token1InContract)</code>) for swapping BNB for AIZPT. This implementation effectively used a quote-like or simplified formula that did not correctly account for slippage or align with the sell-side formula (which used standard Uniswap V2 logic).</li>
+<li><strong>The Exploit:</strong> This discrepancy created a massive arbitrage opportunity. An attacker flashloaned BNB, bought AIZPT at the undervalued "linear" rate defined by the flawed buy formula, and then sold it back using the standard curve logic (or simply traded back and forth), extracting the contract's liquidity.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://verichains.io/news/aizpt-token-hack-analysis-by-tk-verichains">Verichains AIZPT Hack Analysis</a></li>
+<li><a href="https://app.blocksec.com/explorer/tx/bsc/0x5e694707337cca979d18f9e45f40e81d6ca341ed342f1377f563e779a746460d">BlockSec Exploit Transaction</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-10-10---2"><a class="header" href="#2024-10-10---2">2024-10-10 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-10-10</li>
+<li><strong>Project</strong>: HYDT</li>
+<li><strong>Value Lost</strong>: ~$5,800</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.2.1: Insufficient Oracle Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The HYDT token system was exploited via a price manipulation attack on its <code>InitialMint</code> contract. The contract allowed users to mint HYDT tokens by depositing BNB, with the exchange rate determined directly by the WBNB/USDT spot price on PancakeSwap. An attacker utilized a flash loan to borrow USDT and buy a large amount of WBNB, drastically skewing the spot price. They then deposited BNB into the <code>InitialMint</code> contract at this manipulated rate to mint an inflated amount of HYDT tokens, which were subsequently sold for a profit.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://app.blocksec.com/explorer/tx/bsc/0xa9df1bd97cf6d4d1d58d3adfbdde719e46a1548db724c2e76b4cd4c3222f22b3">BlockSec Exploit Transaction</a></li>
+<li><a href="https://learnblockchain.cn/article/10818">LearnBlockchain.cn Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-10-15---1"><a class="header" href="#2024-10-15---1">2024-10-15 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-10-15</li>
+<li><strong>Project</strong>: Uniswap V4 Core</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Celo (and EVM chains where Native Token = ERC20)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.3.1: Double EntryPoint Tokens</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.3.3: Improper Handling of Native Tokens</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was uncovered during the audit of Uniswap V4 involving chains where the native currency also exists as an ERC-20 token (Double EntryPoint), such as CELO on Celo.</li>
+<li><strong>The Mechanism:</strong> The protocol's <code>settle</code> function calculates debt (deltas) differently for native assets (using <code>msg.value</code>) and ERC-20 tokens (using <code>balanceNow - balanceBefore</code>).</li>
+<li><strong>The Exploit:</strong> An attacker could exploit this dual nature by first calling <code>sync</code> to snapshot balances, then calling <code>settle</code> sending native value (increasing the delta via <code>msg.value</code>). Crucially, this action also increases the contract's ERC-20 balance. The attacker could then immediately call <code>settle</code> again using the token's ERC-20 address. The contract would interpret the previous <code>msg.value</code> deposit as a new ERC-20 transfer (since <code>balanceNow</code> &gt; <code>balanceBefore</code>), effectively crediting the user twice for the same funds.</li>
+<li><strong>Impact:</strong> This accounting flaw would allow an attacker to inflate their balance artificially and drain the pool's liquidity without transferring the corresponding assets.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.openzeppelin.com/uniswap-v4-core-audit#erc-20-representation-of-native-currency-can-be-used-to-drain-native-currency-pools">OpenZeppelin Uniswap V4 Core Audit</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-09-25---7"><a class="header" href="#2024-09-25---7">2024-09-25 - 7</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-09-25 (Disclosure Date)</li>
+<li><strong>Project</strong>: Fuel Network (Fuel VM)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Vulnerability Disclosure)</li>
+<li><strong>Chain</strong>: Fuel</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 7: Low-Level &amp; EVM-Specific Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 7.4.1: Incorrect VM Gas Charges</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 8.4: DoS via Numeric Calculation</code> (Resource Exhaustion)</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in the Fuel VM's <code>CCP</code> (Code Copy) instruction during the Fuel Attackathon.</li>
+<li><strong>The Flaw:</strong> The <code>CCP</code> instruction copies code from a contract into memory but charged gas based solely on the size of the source contract's bytecode, not the actual number of bytes copied or the memory region affected. Furthermore, if the destination memory region exceeded the source bytecode size, the instruction would zero-fill the excess area.</li>
+<li><strong>The Exploit:</strong> An attacker could manipulate the <code>offset</code> and <code>length</code> parameters to trigger a massive memory zero-filling operation (a resource-intensive task) while paying a negligible gas fee calculated only on the small contract size. This discrepancy allowed for "cheap" memory clearing, leading to potential network resource exhaustion and Denial of Service (DoS) attacks by underpricing computational work.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/immunefi/top-5-bugs-from-the-fuel-attackathon-313d4060824b">Immunefi: Top 5 Bugs from the Fuel Attackathon (Report 32465)</a></li>
+<li><a href="https://blog.openzeppelin.com/web3-security-auditors-2024-rewind">OpenZeppelin Web3 Security Auditor's Rewind 2024</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-09-10---6"><a class="header" href="#2024-09-10---6">2024-09-10 - 6</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-09-10</li>
+<li><strong>Project</strong>: Pythia Finance</li>
+<li><strong>Value Lost</strong>: ~$53,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 6.4: Calculation Errors</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The Pythia Finance staking contract contained a critical logic error in its reward calculation. The formula calculated rewards by simply multiplying the user's current balance by an accumulating <code>rewards-per-share</code> global variable. Crucially, it failed to subtract the "debt" (rewards accumulated before the user staked), effectively acting as if the user had been staking since the protocol's inception. This allowed an attacker to deposit a large amount, immediately claim massive rewards proportional to the protocol's lifetime history, and exit.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.contractreader.io/contract/mainnet/0xe2910b29252f97bb6f3cc5e66bfa0551821c7461#abstractrewards-13-16-38">Contract Analysis</a></li>
+<li><a href="https://etherscan.io/tx/0x7e19f8edb1f1666322113f15d7674593950ac94bbc25d2aff96adabdcae0a6c3">Exploit Transaction</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-09-03---5"><a class="header" href="#2024-09-03---5">2024-09-03 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-09-03</li>
+<li><strong>Project</strong>: Penpie</li>
+<li><strong>Value Lost</strong>: ~$27,000,000</li>
+<li><strong>Chain</strong>: Ethereum, Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.1.1: Standard Reentrancy</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Penpie, a yield optimizer built on Pendle Finance, was exploited via a sophisticated reentrancy attack enabled by the permissionless registration of new markets.</li>
+<li><strong>The Setup:</strong> The attacker registered a valid Pendle market but linked it to a malicious custom token (SY contract). They then triggered <code>batchHarvestMarketRewards</code>.</li>
+<li><strong>The Reentrancy:</strong> This function calculated rewards by checking token balances before and after calling <code>redeemRewards</code>. During the <code>redeemRewards</code> call, the malicious token's transfer logic handed execution control back to the attacker.</li>
+<li><strong>The Exploit:</strong> Inside this reentrancy window, the attacker called <code>depositMarket</code> to deposit a large amount of funds. This legitimate deposit increased the protocol's token balance. When the execution returned to the <code>harvest</code> function, it read the now-inflated "after" balance. The protocol incorrectly interpreted the difference (which included the attacker's deposit) as massive rewards earned, distributing them to the attacker.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://penpiexyz.io/blog/penpie-post-mortem-report">Penpie Post-Mortem</a></li>
+<li><a href="https://medium.com/olympix/penpie-exploit-a-technical-post-mortem-analysis-8cc4d2073981">Olympix Analysis</a></li>
+<li><a href="https://www.contractreader.io/contract/mainnet/0xff51c6b493c1e4df4e491865352353eadff0f9f8#pendlestakingbaseupg-56-58-298">Contract Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-09-26---4"><a class="header" href="#2024-09-26---4">2024-09-26 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-09-26</li>
+<li><strong>Project</strong>: Onyx Protocol</li>
+<li><strong>Value Lost</strong>: ~$3,800,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 6: Arithmetic &amp; Numeric Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 6.2: Precision Loss &amp; Rounding Errors</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Onyx Protocol, a fork of Compound V2, was exploited in a repeat of the "empty market" attack.</li>
+<li><strong>Precision Loss (Inflation):</strong> The protocol launched a new, low-liquidity market (VUSD) without burning initial liquidity ("dead shares"). An attacker exploited the known Compound V2 exchange rate calculation vulnerability by continuously minting and redeeming tiny amounts of shares. This process manipulated the exchange rate due to rounding errors, allowing the attacker to borrow assets worth far more than their collateral.</li>
+<li><strong>Input Validation Failure:</strong> Additionally, the attacker exploited a vulnerability in Onyx's custom <code>NFTLiquidation</code> contract. The contract failed to validate input parameters during the liquidation process, allowing the attacker to use a fake token or manipulated data to self-liquidate positions and claim inflated rewards, exacerbating the loss.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://rekt.news/onyx-protocol-rekt2/">Rekt News - Onyx Protocol Rekt II</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-09-01---3"><a class="header" href="#2024-09-01---3">2024-09-01 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-09-01 (Incident Month)</li>
+<li><strong>Project</strong>: Maia DAO</li>
+<li><strong>Value Lost</strong>: $0 (Funds Rescued / ~$1.2M At Risk)</li>
+<li><strong>Chain</strong>: Arbitrum, Metis (Multichain)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.1.1: Missing Access Control</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.2.7: Broken Invariant via Function Overriding</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was discovered in Maia DAO's <code>CoreBranchRouter</code> contract. The flaw stemmed from a failure to override a <code>virtual</code> function (<code>callOut</code>) in the deployed contract. The parent contract's default implementation of this function lacked the specific access controls required for the live system, as it was intended to be overridden by the child contract with proper restrictions.</li>
+<li><strong>The Exploit Vector:</strong> This "missing override" oversight meant the public, unsecured parent function was exposed. It would have allowed an attacker to call the function and impersonate a trusted <code>CoreBranchRouter</code>, enabling them to bypass security checks and drain funds from the <code>CoreRootRouter</code> or brick the system.</li>
+<li><strong>Outcome:</strong> The vulnerability was identified by a whitehat hacker, and the Maia DAO team successfully executed a rescue operation to secure the ~$1.2M at risk before any malicious exploitation occurred.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/@maiaDAO/post-mortem-sept-2024-05346c69b756">Maia DAO Post-Mortem</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-09-23---2"><a class="header" href="#2024-09-23---2">2024-09-23 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-09-23</li>
+<li><strong>Project</strong>: Bankroll Network</li>
+<li><strong>Value Lost</strong>: ~$235,000</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 4: Input &amp; Data Validation Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 6.1: Integer Overflow &amp; Underflow</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The <code>BankrollNetworkStack</code> contract was exploited due to a critical input validation failure in the <code>buyFor</code> function. The function allowed users to purchase shares on behalf of another address (<code>_customerAddress</code>) but failed to validate that this address was not the vault contract itself. An attacker exploited this by repeatedly calling <code>buyFor</code> with the vault's address as the customer, using the vault's own balance to simulate "buys". This artificially inflated the <code>profitPerShare</code> and the dividends attributed to the attacker (via the "divs" mechanism), allowing them to withdraw an inflated amount of WBNB, draining the pool.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.solidityscan.com/bankroll-network-hack-analysis-e77fd8442dfa">SolidityScan Analysis</a></li>
+<li><a href="https://x.com/TenArmorAlert/status/1838183189912535492">TenArmor X Alert</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-09-27---1"><a class="header" href="#2024-09-27---1">2024-09-27 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-09-27</li>
+<li><strong>Project</strong>: Bedrock (uniBTC)</li>
+<li><strong>Value Lost</strong>: ~$1,700,000</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.3.3: Improper Handling of Native Tokens</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.2.2: Faulty Contract Checks</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Bedrock protocol was exploited due to a critical flaw in how it handled native tokens on non-Bitcoin chains (e.g., ETH on Ethereum).</li>
+<li><strong>The Mechanism:</strong> The system allowed minting <code>uniBTC</code> at a 1:1 ratio against BTC-equivalent assets. To prevent minting against non-equivalent assets (like ETH), the protocol set a <code>cap</code> of 0 for those assets.</li>
+<li><strong>The Flaw:</strong> The <code>totalSupply</code> function, used to enforce this cap, mistakenly returned <code>0</code> for the <code>NATIVE_BTC</code> address because the native token was not properly registered in the <code>SigmaSupplier</code> contract.</li>
+<li><strong>The Exploit:</strong> This logic error meant the check <code>totalSupply &lt;= cap</code> evaluated to <code>0 &lt;= 0</code> (True), bypassing the restriction. An attacker was able to deposit ETH (valued much lower than BTC) and mint <code>uniBTC</code> at a 1:1 ratio, effectively buying Bitcoin for the price of Ether and draining the protocol's liquidity.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blockapex.io/blog/bedrock-unibtc-hack-analysis/">Bedrock UniBTC Hack Analysis (BlockApex)</a></li>
+<li><a href="https://github.com/Bedrock-Technology/uniBTC/blob/ed4ad7a2c27ee86038b00d9f82a3654aabcd218e/contracts/contracts/Vault.sol#L29">Vulnerable Code (GitHub)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-08-06---6"><a class="header" href="#2024-08-06---6">2024-08-06 - 6</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-08-06</li>
+<li><strong>Project</strong>: Ronin Bridge</li>
+<li><strong>Value Lost</strong>: ~$12,000,000 (Returned by Whitehats)</li>
+<li><strong>Chain</strong>: Ethereum / Ronin</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.1: Improper Initialization</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.1.1: Missing Access Control</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Ronin Bridge was exploited due to a critical initialization failure during a contract upgrade.</li>
+<li><strong>The Flaw:</strong> The development team upgraded the bridge proxy from version 2 to version 4 but neglected to call the intermediate <code>initializeV3</code> function. This function was responsible for initializing the <code>_totalOperatorWeight</code> variable.</li>
+<li><strong>The Impact:</strong> Because the initialization was skipped, <code>_totalOperatorWeight</code> defaulted to <code>0</code>. The bridge's logic checked if the weight of provided signatures met the threshold derived from this variable. With the threshold effectively set to zero, the contract accepted empty or invalid signatures as valid authorization for withdrawals. This allowed an MEV bot (acting as a whitehat) to front-run an attack and withdraw ~$12M in ETH and USDC, effectively bypassing the bridge's multi-signature security.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.halborn.com/blog/post/explained-the-ronin-hack-august-2024">Halborn Analysis: Ronin Network Hack</a></li>
+<li><a href="https://x.com/Verichains/status/1821118165218558356">Verichains Post-Mortem Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-08-13---5"><a class="header" href="#2024-08-13---5">2024-08-13 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-08-13</li>
+<li><strong>Project</strong>: VOW</li>
+<li><strong>Value Lost</strong>: ~$1,200,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.5: Broken State Adjustment</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.1.2: Back-Running</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The VOW token was exploited due to a critical operational security failure involving non-atomic testing in production.</li>
+<li><strong>The Flaw:</strong> The development team attempted to test a configuration change by sending a transaction to modify a critical parameter (setting the <code>usd</code> variable to the <code>vow</code> token address) with the intention of reverting it in a subsequent transaction. This created a temporal gap where the contract was live on mainnet in an invalid, vulnerable state.</li>
+<li><strong>The Exploit:</strong> An attacker monitored the mempool, observed the configuration change, and back-ran the transaction. Within the window before the team could revert the change, the attacker exploited the "abnormal" state—where the system treated VOW as the stable peg—to mint 100 million vUSD tokens, which were then dumped for profit.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.halborn.com/blog/post/explained-the-vow-hack-august-2024">Halborn Hack Analysis</a></li>
+<li><a href="https://rekt.news/vow-rekt/">Rekt News Coverage</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-08-30---4"><a class="header" href="#2024-08-30---4">2024-08-30 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-08-30 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Uniswap V4 Periphery</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: EVM (Uniswap V4)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 8: Denial of Service (DoS) Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 8.11: DoS via Front-Running (Griefing)</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.1.1: Front-Running</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A Denial of Service vulnerability was identified in the Uniswap V4 Periphery contracts regarding the integration of Permit2 within multicalls.</li>
+<li><strong>The Flaw:</strong> The contracts allowed users to bundle a Permit2 signature approval (<code>permit</code>) alongside other actions (like <code>addLiquidity</code> or <code>swap</code>) in a single <code>multicall</code> transaction. The code expected the <code>permit</code> call to execute successfully.</li>
+<li><strong>The Exploit:</strong> An attacker could observe the pending <code>multicall</code> transaction, extract the valid Permit2 signature, and front-run the transaction by submitting the signature directly to the Permit2 contract. This consumes the signature's nonce. When the user's <code>multicall</code> transaction attempts to execute the <code>permit</code>, it reverts because the nonce has already been used. Since the <code>multicall</code> relies on all sub-calls succeeding, the entire transaction (including the intended swap or deposit) fails.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.openzeppelin.com/uniswap-v4-periphery-and-universal-router-audit#dos-attack-on-multicall-via-front-running-permit-signature">OpenZeppelin Uniswap V4 Periphery Audit</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-08-29---3"><a class="header" href="#2024-08-29---3">2024-08-29 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-08-29 (Disclosure Date)</li>
+<li><strong>Project</strong>: Alchemix Finance</li>
+<li><strong>Value Lost</strong>: $0 (Critical Vulnerability Disclosure)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.8: Faulty Array &amp; List Handling</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in Alchemix's <code>VotingEscrow</code> contract regarding how it handled historical data lookups.</li>
+<li><strong>The Flaw:</strong> The protocol used a binary search algorithm to retrieve historical voting power or supply from a <code>pointHistory</code> array based on timestamps. However, the system allowed multiple checkpoints to be created with the exact same timestamp (e.g., within the same block). The binary search implementation was not designed to handle these duplicate keys; it would stop at the <em>first</em> match it found rather than the <em>latest</em> (right-most) entry.</li>
+<li><strong>The Exploit:</strong> An attacker could strategically create multiple checkpoints at a specific timestamp to insert duplicate entries. By manipulating which entry the binary search returned (due to its non-deterministic handling of duplicates), the attacker could force the contract to use stale or manipulated data, potentially inflating their voting power or influencing governance outcomes.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://reports.immunefi.com/alchemix/30655-sc-critical-binary-search-does-not-correctly-handle-duplicate-timestamps.html">Immunefi Report #30655</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-08-30---2"><a class="header" href="#2024-08-30---2">2024-08-30 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-08-30 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Superposition AMM</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Superposition (EVM)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.3.5: EIP Standard Non-Compliance</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.2.1: Unsafe Token Approvals</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in the <code>OwnershipNFTs.sol</code> contract during an audit.</li>
+<li><strong>The Flaw:</strong> The contract implemented a custom version of the ERC-721 standard but failed to adhere to a specific requirement: clearing the <code>getApproved</code> address (token level approval) upon a token transfer.</li>
+<li><strong>The Exploit:</strong> An attacker (Token Owner) could approve the NFT to a secondary address they control, sell the NFT to a victim, and then—because the approval was not revoked during the transfer—use the secondary address to call <code>transferFrom</code> and steal the NFT back from the buyer immediately.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://github.com/code-423n4/2024-08-superposition-findings/issues/160">Code4rena Findings Report</a></li>
+<li><a href="https://github.com/code-423n4/2024-08-superposition/blob/main/pkg/sol/OwnershipNFTs.sol#L109C5-L116C6">Vulnerable Code</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-08-30---1"><a class="header" href="#2024-08-30---1">2024-08-30 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-08-30 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Uniswap V4 Periphery</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: EVM (Uniswap V4)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 6: Arithmetic &amp; Numeric Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 6.3: Unsafe Type Casting</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A high-severity vulnerability was identified in the Uniswap V4 Periphery during an audit. The flaw existed in the <code>validateMinOut</code> function, which is responsible for enforcing slippage protection.</li>
+<li><strong>The Flaw:</strong> The function performed an unsafe cast from <code>int128</code> (liquidity delta) to <code>uint128</code>. In Uniswap V4, hooks can return a negative <code>liquidityDelta</code>. When a negative value is cast directly to an unsigned integer, it underflows and wraps around to a massive positive number (e.g., casting <code>-1</code> results in <code>2^128 - 1</code>).</li>
+<li><strong>The Exploit:</strong> An attacker could exploit this by interacting with a hook that returns a negative delta. The unsafe cast would incorrectly interpret this as a massive liquidity increase, bypassing the minimum output check (slippage protection) because the system would believe the user received a huge amount of assets.</li>
+<li><strong>Mitigation:</strong> The issue was resolved by using <code>SafeCast.toUint128</code>, which correctly reverts if the value is negative.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.openzeppelin.com/uniswap-v4-periphery-and-universal-router-audit#slippage-check-can-be-bypassed-with-unsafe-cast">OpenZeppelin Uniswap V4 Periphery Audit</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-07-23---2"><a class="header" href="#2024-07-23---2">2024-07-23 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-07-23</li>
+<li><strong>Project</strong>: Delta Prime</li>
+<li><strong>Value Lost</strong>: ~$1,000,000</li>
+<li><strong>Chain</strong>: Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 7: Low-Level &amp; EVM-Specific Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 7.2.1: Unsafe Storage Use</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.2.1: Improper Initialization</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Delta Prime was exploited due to a critical storage collision vulnerability inherent in its proxy architecture, compounded by a forgotten initialization function.</li>
+<li><strong>The Architecture:</strong> The project used a <code>DiamondBeaconProxy</code> pattern. User "Prime Accounts" were clones that delegatecalled to a <code>DiamondBeacon</code>, which then delegated to implementation facets.</li>
+<li><strong>The Flaw:</strong> Both the Prime Account proxy and the Diamond contract utilized the same storage slot to store the <code>owner</code> address. However, they used <em>different</em> storage slots to track their <code>initialized</code> status. Additionally, the developers failed to remove or protect the <code>init</code> function on the DiamondBeacon after deployment.</li>
+<li><strong>The Exploit:</strong> An attacker invoked the <code>init</code> function on other users' Prime Accounts. This call was delegated to the Diamond's <code>init</code> logic. Because the Diamond checked a different <code>initialized</code> storage slot (which was empty in the context of the Proxy), the check passed. The function then overwrote the <code>owner</code> storage slot—which was shared by the Proxy—granting the attacker full control over the victims' Prime Accounts and allowing them to drain funds.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/@Delta_Prime/deltaprime-post-mortem-report-752bd60a25e6">Delta Prime Post-Mortem</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-07-23---4"><a class="header" href="#2024-07-23---4">2024-07-23 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-07-23</li>
+<li><strong>Project</strong>: Spectra Finance</li>
+<li><strong>Value Lost</strong>: ~$73,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.2.4: Composable Arbitrary Calls</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.2.1: Unsafe Token Approvals</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Spectra Finance was exploited due to an arbitrary call vulnerability within its router's swap logic.</li>
+<li><strong>The Flaw:</strong> The protocol allowed users to execute trades via KyberSwap, but failed to validate the <code>kyberRouter</code> address and the <code>targetData</code> payload passed to the <code>_dispatch</code> function (command type <code>0x12</code>).</li>
+<li><strong>The Exploit:</strong> An attacker exploited this by passing the <code>asdCRV</code> token address as the <code>kyberRouter</code> and encoding a <code>transferFrom</code> call in the <code>targetData</code>. Since the Spectra router executed this call as itself, and users had previously approved the Spectra router to spend their <code>asdCRV</code> tokens, the attacker was able to drain funds from user wallets directly to their own.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://lunaray.medium.com/spectra-protocol-hack-analysis-06b877498757">Lunaray Hack Analysis</a></li>
+<li><a href="https://verichains.io/news/spectra-protocol-exploit-arbitrary-call-strikes-again">Verichains Post-Mortem</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-07-16---3"><a class="header" href="#2024-07-16---3">2024-07-16 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-07-16</li>
+<li><strong>Project</strong>: Li.Fi (Jumper Exchange)</li>
+<li><strong>Value Lost</strong>: ~$11,600,000</li>
+<li><strong>Chain</strong>: Ethereum, Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.2.4: Composable Arbitrary Calls</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.2.1: Unsafe Token Approvals</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Li.Fi DEX aggregator was exploited due to a critical arbitrary call vulnerability in a newly deployed facet.</li>
+<li><strong>The Flaw:</strong> The protocol introduced a feature allowing users to deposit tokens and specify a route for swapping. However, the contract failed to sanitize the <code>target</code> address and <code>callData</code> provided by the user.</li>
+<li><strong>The Exploit:</strong> An attacker crafted a malicious route where the <code>target</code> was a popular token contract (e.g., USDT, USDC) and the <code>callData</code> was a <code>transferFrom</code> call. Since the Li.Fi contract executed this call, and many users had granted infinite approvals to the Li.Fi contract, the attacker was able to use the protocol as a "confused deputy" to drain tokens directly from users' wallets into their own.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://rekt.news/lifi-jumper-rekt/">Rekt News - Li.Fi / Jumper Rekt</a></li>
+<li><a href="https://x.com/lifiprotocol/status/1813165270728470945">Li.Fi Post-Mortem</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-07-12---2"><a class="header" href="#2024-07-12---2">2024-07-12 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-07-12</li>
+<li><strong>Project</strong>: Dough Finance</li>
+<li><strong>Value Lost</strong>: ~$1,800,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.3.1: Missing Validation in Callbacks</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The <code>ConnectorDeleverageParaswap</code> contract was exploited due to a critical validation failure in its flashloan callback execution. Users could initiate a flashloan via <code>flashloanReq</code> and provide a <code>swapData</code> parameter, intended to specify trade details for a ParaSwap interaction. This data was passed through to the <code>executeOperation</code> callback. However, the callback logic (<code>deloopAllCollaterals</code>) failed to validate or sanitize this user-supplied data. This allowed an attacker to craft malicious <code>swapData</code> that, instead of executing a swap, triggered a direct <code>WETH.transferFrom</code> call, stealing assets that users had approved to the contract.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.solidityscan.com/doughfina-hack-analysis-685ed56adb19">SolidityScan Analysis</a></li>
+<li><a href="https://www.contractreader.io/contract/mainnet/0x9f54e8eAa9658316Bb8006E03FFF1cb191AafBE6#connectordeleverageparaswap-1-16-111">Contract Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-07-24---1"><a class="header" href="#2024-07-24---1">2024-07-24 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-07-24</li>
+<li><strong>Project</strong>: Compound DAO</li>
+<li><strong>Value Lost</strong>: $0 (Governance Takeover Averted; ~$25M Assets at Risk)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.1: DAO Governance Attacks</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 1.3.1: Social Engineering Exploits</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Compound DAO faced a hostile governance takeover attempt by a group known as the "GoldenBoyz." The attack aimed to pass Proposal 289, which sought to transfer 499k COMP tokens ($25M) from the treasury to a vault, while simultaneously delegating the voting power of those tokens to the proposers.</li>
+<li><strong>Governance Exploit:</strong> Given Compound's low voter turnout (4-5%), gaining control of these tokens (5% of supply) would have allowed the attackers to unilaterally dictate future governance outcomes.</li>
+<li><strong>Social Engineering &amp; Timing:</strong> The attackers used failed "test" proposals (247 and 279) to gauge community resistance. For the final malicious proposal, they employed "stealth voting," casting the majority of "for" votes at the very end of the voting window to limit the community's ability to react.</li>
+<li><strong>Mitigation:</strong> The proposal passed, but the community responded with Proposal 290 to move administrative control to a Community Multisig. A truce was eventually reached, and the immediate threat to the protocol's governance was neutralized.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.openzeppelin.com/compound-dao-governance-attack">OpenZeppelin Analysis</a> (Contextual Link based on description)</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-06-25---1"><a class="header" href="#2024-06-25---1">2024-06-25 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-06-25 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Taiko (Bridge)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Taiko / Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 4: Input &amp; Data Validation Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 4.5.1: Parser Differential / Inconsistent Validation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.2.4: Composable Arbitrary Calls</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was discovered in Taiko's bridge message processing logic during an audit, exemplifying a <strong>Parser Differential</strong> bug.</li>
+<li><strong>The Mechanism:</strong> The bridge handled cross-chain messages via two distinct paths: <code>processMessage</code> (immediate execution) and <code>retryMessage</code> (delayed execution for rate-limited messages).</li>
+<li><strong>The Flaw:</strong> The immediate execution path correctly validated inputs to prevent calls to forbidden addresses. However, the <code>retryMessage</code> path <strong>inconsistently applied these validations</strong>, skipping the forbidden address check entirely.</li>
+<li><strong>The Exploit:</strong> An attacker could intentionally trigger the rate limit to force a malicious message into the "Retriable" state. They could then execute the message via the vulnerable <code>retryMessage</code> path, bypassing the security checks. This would allow them to execute arbitrary calls (like <code>transferFrom</code>) against forbidden targets (like token contracts) with the Bridge acting as <code>msg.sender</code>.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.openzeppelin.com/taiko-protocol-audit#bridge-signals-can-be-forged-to-drain-the-protocol-phase-3">OpenZeppelin Taiko Protocol Audit</a></li>
+<li><a href="https://medium.com/@nnez/different-parsers-different-results-acecf84dfb0c">Medium: Different Parsers, Different Results</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-06-10---5"><a class="header" href="#2024-06-10---5">2024-06-10 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-06-10</li>
+<li><strong>Project</strong>: UWU Lend</li>
+<li><strong>Value Lost</strong>: ~$19,300,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.2.4: Over-Leverage &amp; Liquidation Spirals</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>UWU Lend was exploited due to a combination of fragile economic parameters and oracle manipulation.</li>
+<li><strong>The Flaw (Over-Leverage):</strong> The protocol configured the sUSDE market with a Liquidation Threshold of 90% and a Liquidation Bonus of 10%. This left effectively zero margin for error (90% + 10% = 100%).</li>
+<li><strong>The Exploit (Price Manipulation):</strong> An attacker manipulated the price of the collateral asset (sUSDE) down by just ~4% using a flash loan and curve pool imbalances. Because of the aggressive LTV parameters, this minor fluctuation allowed the attacker to liquidate their own position profitably. They could borrow assets, trigger the liquidation, and receive the 10% bonus which, combined with the manipulated price, exceeded the debt repayment cost, draining the protocol.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/@zxy211965/decoding-the-uwu-lend-exploits-minor-price-fluctuations-major-financial-losses-c9521ebe5dc9">Medium Analysis</a></li>
+<li><a href="https://x.com/CertiKAlert/status/1800155208649318465">CertiK Alert</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-06-19---4"><a class="header" href="#2024-06-19---4">2024-06-19 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-06-19 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Linea (PLONK Go Prover)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Linea (Layer 2)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 7: Low-Level &amp; EVM-Specific Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 7.3.4: Forgetting to Blind Polynomials in ZK Protocols</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical cryptographic vulnerability was identified in Linea's PLONK Go Prover implementation during a security audit.</li>
+<li><strong>The Theory:</strong> In ZK-SNARKs, provers generate polynomials to represent secret data (the witness). To prevent the verifier from reconstructing these polynomials (and thus learning the secret) via the revealed evaluations, the polynomials must be "blinded" by adding random coefficients.</li>
+<li><strong>The Flaw:</strong> The Linea implementation split the quotient polynomial into "shards" but failed to apply blinding to these individual shards.</li>
+<li><strong>The Impact:</strong> Without this blinding, the evaluations provided during the proof generation process leaked excessive information. This could allow an attacker to statistically reconstruct the polynomial and recover the secret witness, completely compromising the zero-knowledge property of the system.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.openzeppelin.com/linea-prover-audit#the-quotient-polynomial-shards-are-not-individually-blinded">OpenZeppelin Linea Prover Audit</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-06-11---3"><a class="header" href="#2024-06-11---3">2024-06-11 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-06-11 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Opal Protocol (Omnipool)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.3.1: Lack of Slippage Control</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.1.3: Sandwich Attacks</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in the Opal Omnipool's reward claiming logic during a security review.</li>
+<li><strong>The Flaw:</strong> When users claimed rewards, the contract executed a <code>Balancer.batchSwap</code> to convert tokens. However, the function call failed to specify a minimum output amount (limits), effectively accepting 100% slippage.</li>
+<li><strong>The Exploit:</strong> An attacker could exploit this by monitoring the mempool for reward claim transactions. They could "sandwich" the transaction by front-running it to manipulate the pool's price and back-running it to capture the slippage. This would allow the attacker to siphon off a significant portion, if not all, of the user's rewards.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://solodit.cyfrin.io/issues/theft-of-rewards-via-sandwich-attack-cantina-none-opalprotocol-pdf">Cantina / Solodit Audit Report</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-06-20---2"><a class="header" href="#2024-06-20---2">2024-06-20 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-06-20 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Boost AA Wallet</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: EVM (Optimism, Base, etc.)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 7: Low-Level &amp; EVM-Specific Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 7.3.1: Weak Random Number Generation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 1.4.1: Compromised Validator/Node</code> (Context: Validator manipulation)</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in the Boost AA Wallet's raffle mechanism during an audit.</li>
+<li><strong>The Flaw:</strong> The protocol determined raffle winners using <code>block.prevrandao</code> and <code>block.timestamp</code> as the sole sources of randomness.</li>
+<li><strong>The Exploit:</strong> While these values are hard for a regular user to predict in advance, a malicious validator (or a sequencer in L2 contexts) has control over block production. They could simulate the raffle result for a pending block and choose to withhold the block or reorganize transactions if the outcome is not favorable, effectively "re-rolling" the dice until they win.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://github.com/sherlock-audit/2024-06-boost-aa-wallet-judging/issues/11">Sherlock Findings Report</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-06-14---1"><a class="header" href="#2024-06-14---1">2024-06-14 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-06-14 (Public Disclosure)</li>
+<li><strong>Project</strong>: Alchemix</li>
+<li><strong>Value Lost</strong>: $0 (Bounty Paid: ~$28,730)</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.1.1: Missing Access Control</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.1.3: Sandwich Attacks</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: A high-severity vulnerability was identified in Alchemix's yield harvesting logic involving its integration with Gelato. The protocol intended to mitigate sandwich attacks during yield unwrapping by restricting the <code>harvest</code> function—which accepts a <code>minimumAmountOut</code> parameter—to be callable only by the Gelato Automate contract. However, Alchemix integrated the generic, public Gelato Automate contract rather than a dedicated proxy. Because the generic contract allows any user to schedule tasks, an attacker could have scheduled a task instructing Gelato to call <code>harvest</code> with <code>minimumAmountOut</code> set to zero. This would satisfy the <code>msg.sender</code> check (as the call comes from Gelato) while allowing the attacker to sandwich the transaction and steal the harvested yield.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/immunefi/alchemix-access-control-issue-bugfix-review-2a8fbcddf588">Immunefi Bugfix Review</a></li>
+<li><a href="https://docs.gelato.network/web3-services/web3-functions/security-considerations#dedicated-msg.sender">Gelato Security Docs</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-05-20---7"><a class="header" href="#2024-05-20---7">2024-05-20 - 7</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-05-20 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Elfi Protocol</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.2.5: Broken State Adjustment</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in the Elfi Protocol's staking mechanism during a Sherlock audit.</li>
+<li><strong>The Flaw:</strong> The protocol issued transferable <code>stakeToken</code> (st) as proof of deposit but calculated rewards based on the account's current <code>st</code> balance rather than an internal, non-transferable staking record.</li>
+<li><strong>The Exploit:</strong> This created a "double-dipping" vulnerability. An attacker could stake tokens in Account A, transfer the <code>st</code> tokens to Account B, and claim rewards on Account B. They could then transfer the <code>st</code> tokens back to Account A (or to Account C) and claim rewards again for the same time period, effectively multiplying the yield generated by a single deposit.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://github.com/sherlock-audit/2024-05-elfi-protocol-judging/issues/146">Sherlock Audit Issue #146</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="2024-05-27---6"><a class="header" href="#2024-05-27---6">2024-05-27 - 6</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-05-27</li>
+<li><strong>Project</strong>: RedKeysGame</li>
+<li><strong>Value Lost</strong>: ~$10,000</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 7: Low-Level &amp; EVM-Specific Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 7.3.1: Weak Random Number Generation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The <code>RedKeysGame</code> contract was exploited due to a Weak RNG vulnerability. The contract determined the winner of a betting game by deriving a "random" number from predictable on-chain variables, including the block's <code>timestamp</code>, <code>prevrandao</code> (difficulty), <code>gaslimit</code>, <code>coinbase</code>, and <code>number</code>. An attacker deployed a malicious contract that pre-calculated the result using these same publicly available values before submitting the bet in the same transaction block. This allowed the attacker to guarantee a win every time, draining the contract's funds.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://bscscan.com/tx/0x8d5fb97b35b830f8addcf31c8e0c6135f15bbc2163d891a3701ada0ad654d427">Exploit Transaction</a></li>
+<li><a href="https://www.contractreader.io/contract/bsc/0x71e3056aa4985de9f5441f079e6c74454a3c95f0">Contract Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-05-16---5"><a class="header" href="#2024-05-16---5">2024-05-16 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-05-16</li>
+<li><strong>Project</strong>: TCH Token</li>
+<li><strong>Value Lost</strong>: ~$18,000</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 7: Low-Level &amp; EVM-Specific Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 7.3.2: Malleable ecrecover</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The TCH token contract was exploited due to a "CTF-style" signature malleability vulnerability.</li>
+<li><strong>The Flaw:</strong> The <code>burnToken</code> function used <code>ecrecover</code> to validate signatures from an authorized signer. Crucially, the replay protection mechanism tracked the uniqueness of the <em>signature bytes</em> rather than the message digest or a nonce.</li>
+<li><strong>The Exploit:</strong> An attacker harvested valid, previously used signatures and modified the <code>v</code> value (e.g., from <code>0x01</code> to <code>0x1c</code>). Due to the malleability of ECDSA signatures in Ethereum (where <code>s</code> and <code>-s</code> mod <code>n</code> are both valid), <code>ecrecover</code> resolved this modified signature to the same authorized signer. However, because the signature bytes were technically different, it bypassed the contract's "already used" check.</li>
+<li><strong>The Impact:</strong> The attacker replayed these burn authorizations to burn a significant amount of TCH tokens held by the PancakeSwap liquidity pair. This artificially inflated the token price, allowing the attacker to sell their holdings for a profit.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/DecurityHQ/status/1791180322882629713">DecurityHQ Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-05-28---4"><a class="header" href="#2024-05-28---4">2024-05-28 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-05-28 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Scroll (Batch Token Bridge)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.1.2: ERC-777 Reentrancy</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.2.1: Improper Initialization</code> (Related to configuration, but not the primary exploit)</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical reentrancy vulnerability was identified in the Scroll Batch Token Bridge during an audit.</li>
+<li><strong>The Flaw:</strong> The <code>depositERC20</code> function initiated a token transfer using <code>safeTransferFrom</code> <em>before</em> calling the internal <code>_deposit</code> function. Crucially, the <code>nonReentrant</code> modifier was placed on the internal <code>_deposit</code> function rather than the external <code>depositERC20</code> entry point.</li>
+<li><strong>The Exploit:</strong> An attacker using a token with sender hooks (such as ERC-777 or compliant ERC-20s with callbacks) could re-enter the <code>depositERC20</code> function during the <code>safeTransferFrom</code> call. Because the execution flow had not yet reached the <code>_deposit</code> function where the guard resided, the reentrancy check was bypassed. This allowed the attacker to stack multiple deposits in a single transaction, potentially inflating their credited amount on L2 or locking funds in the bridge.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.openzeppelin.com/scroll-batch-token-bridge-audit#malicious-actor-can-steal-deposits-of-tokens-with-sender-hooks-or-cause-lock-of-funds">OpenZeppelin Scroll Batch Token Bridge Audit</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-05-29---3"><a class="header" href="#2024-05-29---3">2024-05-29 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-05-29</li>
+<li><strong>Project</strong>: Scroll Token (Custom Token on Scroll L2)</li>
+<li><strong>Value Lost</strong>: Token Price Plunged ~99% (Amount Unknown)</li>
+<li><strong>Chain</strong>: Scroll</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 6: Arithmetic &amp; Numeric Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 6.1: Integer Overflow &amp; Underflow</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The "Scroll Token" (a custom ERC-20 token deployed on the Scroll network, not the network's native token) was exploited due to a classic integer underflow. The developers placed a subtraction operation within an <code>unchecked</code> block to optimize gas, assuming the "from" balance was sufficient. However, the logic allowed a transfer from an address with a zero balance to underflow, wrapping around to the maximum <code>uint256</code> value. This allowed the attacker to mint a massive amount of tokens and dump them, crashing the price.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.verichains.io/p/unveiling-the-scroll-token-attack">Verichains: Unveiling the Scroll Token Attack</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-05-10---2"><a class="header" href="#2024-05-10---2">2024-05-10 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-05-10</li>
+<li><strong>Project</strong>: Galaxy Fox</li>
+<li><strong>Value Lost</strong>: ~$330,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.1.1: Missing Access Control</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The Galaxy Fox token contract was exploited due to a critical access control failure in its airdrop logic. The protocol used a Merkle Tree to distribute tokens, but the <code>setMerkleRoot</code> function—intended for admin use to update the eligible claim list—was left public with no authorization checks. An attacker called this function to overwrite the legitimate root with a malicious one, for which they possessed a valid leaf path. This allowed them to fraudulently claim a massive amount of GFOX tokens, which they immediately swapped for ETH in the Uniswap pool.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/neptune-mutual/how-was-galaxy-fox-token-exploited-c0860520cdc2">Neptune Mutual Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-05-10---1"><a class="header" href="#2024-05-10---1">2024-05-10 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-05-10</li>
+<li><strong>Project</strong>: TSURU</li>
+<li><strong>Value Lost</strong>: ~$410,000</li>
+<li><strong>Chain</strong>: Base</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.3.1: Missing Validation in Callbacks</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The TSURUWrapper contract was exploited due to a critical validation failure in its <code>onERC1155Received</code> hook. This function is a standard callback intended to be triggered only by the <code>TSURU</code> token contract upon a safe transfer. However, the function lacked a check to verify that <code>msg.sender</code> was the actual token contract. This allowed an attacker to call the hook directly, spoofing a deposit and minting unlimited tokens to themselves, which were then used to drain the Uniswap pool.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://neptunemutual.com/blog/analysis-of-the-tsuru-exploit/">Neptune Mutual Analysis</a></li>
+<li><a href="https://x.com/shoucccc/status/1788941548929110416">X Alert by @shoucccc</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-25---1"><a class="header" href="#2024-04-25---1">2024-04-25 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-25</li>
+<li><strong>Project</strong>: NGFS Token</li>
+<li><strong>Value Lost</strong>: ~$190,000</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.1: Improper Initialization</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.1.1: Missing Access Control</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The NGFS token contract was exploited due to a failure to properly lock critical configuration variables upon deployment.</li>
+<li><strong>The Flaw:</strong> The contract included a <code>uniswapV2Dele</code> flag intended to lock the privileged <code>_uniswapV2Proxy</code> address after initialization. However, the deployer failed to set this flag to <code>true</code> during the deployment process.</li>
+<li><strong>The Exploit:</strong> Because the lock was open, an attacker was able to call the initialization function (or a setter protected by this flag) to overwrite the <code>_uniswapV2Proxy</code> with their own address. This granted them privileged access to restricted operations, allowing them to mint unlimited tokens and drain the liquidity pool.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://solidityscan.com/blog/ngfs-token-hack-analysis/">SolidityScan Hack Analysis</a></li>
+<li><a href="https://www.contractreader.io/contract/bsc/0xa608985f5b40cdf6862bec775207f84280a91e3a#ngfstoken-1-11-486">Contract Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-08---9"><a class="header" href="#2024-04-08---9">2024-04-08 - 9</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-08</li>
+<li><strong>Project</strong>: Squid Game (SQUID)</li>
+<li><strong>Value Lost</strong>: ~$87,000</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.3.1: Lack of Slippage Control</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.1.1: Missing Access Control</code>, <code>BWC 5.1.3: Sandwich Attacks</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The <code>SquidTokenSwap</code> contract was exploited due to a combination of insufficient slippage protection and missing access control on a critical function.</li>
+<li><strong>The Flaw:</strong> The contract exposed a public function (<code>sellSwappedTokens</code>) that allowed any user to trigger a swap of tokens held by the contract on PancakeSwap. Crucially, this function enforced a hardcoded slippage tolerance of 5%, which is excessively wide for an automated, public function.</li>
+<li><strong>The Exploit:</strong> An attacker utilized a sandwich attack strategy. They first front-ran the swap to push the price to the limit of the 5% tolerance. Then, they triggered the contract's swap function (which executed at the manipulated bad price). Finally, they back-ran the transaction to sell and capture the profit from the price movement, draining value from the protocol.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/neptune-mutual/how-was-squid-game-coin-exploited-2a8fbcddf588">Neptune Mutual Analysis</a></li>
+<li><a href="https://app.blocksec.com/explorer/tx/bsc/0x9fcf38d0af4dd08f4d60f7658b623e35664e74bca0eaebdb0c3b9a6965d6257b">Exploit Transaction</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-01---8"><a class="header" href="#2024-04-01---8">2024-04-01 - 8</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04 (Incident Month)</li>
+<li><strong>Project</strong>: Hackathon Token</li>
+<li><strong>Value Lost</strong>: Unknown</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.4: Self Transfers and Transaction Timing Attacks</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 6.4: Calculation Errors</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Hackathon token was exploited due to a flawed custom transfer logic that failed to handle self-transfers correctly, specifically when an AMM pair was both the sender and recipient.</li>
+<li><strong>The Flaw:</strong> The token's transfer function contained logic intended to manage reserves but did not validate if <code>from == to</code>. When tokens were sent to the pair address, the faulty accounting logic effectively doubled the balance of the pair instead of netting it out.</li>
+<li><strong>The Exploit:</strong> An attacker sent excess tokens to the Uniswap-like pair and called the <code>skim</code> function (which syncs balances to reserves) with the pair itself as the destination. The self-transfer bug doubled the "excess" tokens in the pair's balance. The attacker then called <code>skim</code> again, this time to their own address, to extract the artificially created surplus.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://github.com/SunWeb3Sec/DeFiHackLabs/blob/main/src/test/2024-04/Hackathon_exp.sol#L43C16-L48C18">DeFiHackLabs Exploit Reproduction</a></li>
+<li><a href="https://www.contractreader.io/contract/bsc/0x11cee747Faaf0C0801075253ac28aB503C888888#hackathon-1-1-583">Contract Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-19---7"><a class="header" href="#2024-04-19---7">2024-04-19 - 7</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-19</li>
+<li><strong>Project</strong>: Hedgey Finance</li>
+<li><strong>Value Lost</strong>: ~$44,700,000</li>
+<li><strong>Chain</strong>: Ethereum, Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.2.1: Unsafe Token Approvals</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Hedgey Finance was exploited due to a critical "lingering approval" vulnerability combined with insufficient input validation.</li>
+<li><strong>The Flaw:</strong> The <code>createLockedCampaign</code> function allowed users to specify a <code>claimLockup</code> struct, which included a <code>tokenLocker</code> address. The contract would automatically approve this <code>tokenLocker</code> address to spend the campaign's tokens. Crucially, the protocol failed to validate that the <code>tokenLocker</code> was a trusted Hedgey contract. Furthermore, when a campaign was canceled, the protocol returned the funds but failed to revoke (reset to zero) the token allowance granted to the <code>tokenLocker</code>.</li>
+<li><strong>The Exploit:</strong> An attacker created a campaign using a malicious contract address as the <code>tokenLocker</code>. This tricked the Hedgey contract into approving the attacker's contract to spend its funds. The attacker then canceled the campaign to retrieve their initial deposit. Because the approval was not revoked, the attacker's malicious contract retained the ability to spend funds from the Hedgey contract, which they then used to drain approximately $44.7M in assets.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.certik.com/resources/blog/hedgey-finance-incident-analysis">Hedgey Finance Incident Analysis (CertiK)</a></li>
+<li><a href="https://halborn.com/explained-the-hedgey-finance-hack-april-2024/">Halborn Hack Explanation</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-30---6"><a class="header" href="#2024-04-30---6">2024-04-30 - 6</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-30 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Renzo Finance</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 8: Denial of Service (DoS) Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 8.1: DoS via External Calls</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical Denial of Service vulnerability was identified in Renzo Finance's withdrawal logic during an audit.</li>
+<li><strong>The Flaw:</strong> The protocol used the legacy Solidity function <code>.transfer()</code> to send ETH to users withdrawing their assets. This function enforces a hardcoded gas limit of 2300 gas on the recipient's execution.</li>
+<li><strong>The Impact:</strong> This gas stipend is insufficient for many smart contract wallets (e.g., Gnosis Safe, Argent, or wallets with complex <code>receive</code> logic) to process the incoming transaction. Consequently, legitimate withdrawals to these addresses would strictly fail with an "Out of Gas" error, effectively locking the users' funds in the contract with no way to claim them.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://github.com/code-423n4/2024-04-renzo-findings/issues/612">Code4rena Findings Report</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-16---5"><a class="header" href="#2024-04-16---5">2024-04-16 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-16 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Mantle Network (CrossDomainMessenger)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Mantle</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.2.4: Composable Arbitrary Calls</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in Mantle's <code>CrossDomainMessenger</code> contract during an audit. This contract is responsible for bridging assets and relaying messages between L1 and L2.</li>
+<li><strong>The Mechanism:</strong> When bridging tokens, they are minted to the <code>CrossDomainMessenger</code> on the destination chain. The messenger then calls <code>relayMessage</code> to execute the user's cross-chain intent. If a call fails, the funds remain in the messenger contract, waiting for a replay.</li>
+<li><strong>The Flaw:</strong> The <code>relayMessage</code> function lacked sufficient validation of the <code>_target</code> address. It allowed the execution of arbitrary calls to any address, including the token contracts holding the bridge's assets.</li>
+<li><strong>The Exploit:</strong> An attacker could craft a malicious cross-chain message targeting the MNT or ETH token contract on the destination chain. The message payload would encode a call to <code>approve(attacker, amount)</code>. Since the <code>CrossDomainMessenger</code> executes this call (making it the <code>msg.sender</code>), and it holds the locked funds, the token contract would grant the attacker approval to spend the bridge's assets. The attacker could then drain the funds using <code>transferFrom</code>.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.openzeppelin.com/mantle-v2-solidity-contracts-audit">OpenZeppelin Mantle V2 Audit</a></li>
+<li><a href="https://blog.openzeppelin.com/web3-security-auditors-2024-rewind">Web3 Security Auditor's Rewind 2024</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-15---4"><a class="header" href="#2024-04-15---4">2024-04-15 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-15</li>
+<li><strong>Project</strong>: SumerMoney</li>
+<li><strong>Value Lost</strong>: ~$350,000</li>
+<li><strong>Chain</strong>: Base</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.1.1: Standard Reentrancy</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The SumerMoney protocol (a Compound fork) was exploited due to a deviation from the standard Checks-Effects-Interactions pattern in its loan repayment logic.</li>
+<li><strong>The Flaw:</strong> The <code>repayBorrow</code> function refunded excess ETH to the caller <em>before</em> updating the global <code>totalBorrows</code> state variable.</li>
+<li><strong>The Exploit:</strong> An attacker repaid a loan with a 1 wei surplus. When the contract transferred this 1 wei refund, it triggered the attacker's fallback function. At this precise moment, the protocol held the repaid cash, but the <code>totalBorrows</code> figure had not yet been decreased. This temporary state inconsistency caused the exchange rate (calculated as <code>(Cash + Borrows - Reserves) / Supply</code>) to spike artificially. Inside the reentrancy hook, the attacker redeemed their collateral at this inflated rate, receiving significantly more underlying assets than they were entitled to.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://lunaray.medium.com/summermoney-hack-analysis-65257217071e">Lunaray Hack Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-16---3"><a class="header" href="#2024-04-16---3">2024-04-16 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-16 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Mantle Network (op-geth)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Vulnerability Patched)</li>
+<li><strong>Chain</strong>: Mantle</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 1: Ecosystem &amp; Off-Chain Risks</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 1.4.5: Client Consensus Bug</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 6.1: Integer Overflow &amp; Underflow</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was discovered in Mantle's execution client (<code>op-geth</code>) during an audit. The flaw was located in the state transition logic that handles L1-to-L2 ETH deposits.</li>
+<li><strong>The Flaw:</strong> When processing a deposit, the Go code calculated the balance change using <code>BigInt</code> subtraction. If the "from" address had insufficient funds, the result would be a negative number. The critical failure occurred in the <code>common.BigToHash</code> function, which blindly converted this negative <code>BigInt</code> into a positive 32-byte hash (essentially underflowing/wrapping to a massive positive value) when writing to the state trie.</li>
+<li><strong>Impact:</strong> This would have allowed an attacker to initiate a transfer they couldn't afford, resulting in their balance being set to a near-infinite amount instead of reverting, effectively enabling infinite ETH minting on L2.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.openzeppelin.com/mantle-op-geth-audit#attacker-can-get-infinite-bvm_eth-tokens-to-drain-the-protocol">OpenZeppelin Mantle Audit</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-26---2"><a class="header" href="#2024-04-26---2">2024-04-26 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-26 (Audit Report Date)</li>
+<li><strong>Project</strong>: Taiko (TimelockTokenPool)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Ethereum / Taiko (Layer 2)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 4: Input &amp; Data Validation Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 4.3.2: Incomplete Signature Schemes</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in the <code>TimelockTokenPool</code> contract used for Taiko grants. The contract allowed recipients to withdraw tokens using a signature authorization.</li>
+<li><strong>The Flaw:</strong> The signature validation logic relied on a weak digest: <code>keccak256(abi.encodePacked("Withdraw unlocked Taiko token to: ", _to))</code>. This digest failed to include critical replay protection fields: a <strong>nonce</strong> (to prevent reusing the same signature on the same contract), the <strong>verifying contract address</strong> (to prevent reusing the signature on different pools), and the <strong>chain ID</strong> (to prevent cross-chain replays).</li>
+<li><strong>The Exploit:</strong> An attacker (or a malicious recipient) could capture a valid signature used for one withdrawal and replay it multiple times to drain the pool of all unlocked tokens allocated to that grant, or potentially replay it on other chains or contract instances.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://code4rena.com/reports/2024-03-taiko#h-05-signatures-can-be-replayed-in-withdraw-to-withdraw-more-tokens-than-the-user-originally-intended">Code4rena Findings Report</a></li>
+<li><a href="https://github.com/code-423n4/2024-03-taiko-findings/issues/60">GitHub Issue #60</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-04-26---1"><a class="header" href="#2024-04-26---1">2024-04-26 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-04-26</li>
+<li><strong>Project</strong>: Renzo Protocol</li>
+<li><strong>Value Lost</strong>: $0 (Audit Finding)</li>
+<li><strong>Chain</strong>: N/A (Audit Finding)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li>Broader Classification: BWC 8: Denial of Service (DoS) Vulnerabilities</li>
+<li>Primary Classification: BWC 8.1: DoS via External Calls</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The vulnerability was caused by using a low-level <code>payable.transfer()</code> call, which forwards a fixed 2300 gas stipend, to send funds to a user withdrawing from the protocol.</li>
+<li>The auditor identified that if the user's withdrawal address was a multi-sig wallet (e.g., Gnosis Safe), its fallback <code>receive()</code> function would fail due to the insufficient gas stipend.</li>
+<li>This issue was critical because the withdrawal mechanism required the final claimant to be the <em>exact same address</em> that initiated the withdrawal.</li>
+<li>This created a permanent DoS scenario: the Gnosis Safe could not receive the funds due to the low gas, but it was the only entity authorized to complete the withdrawal, leading to a permanent loss of funds for that user.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://github.com/code-423n4/2024-04-renzo-findings/issues/612">C423n4 Finding</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-03-03---2"><a class="header" href="#2024-03-03---2">2024-03-03 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-03-03 (Blog Series Publication)</li>
+<li><strong>Project</strong>: Stargate / Drips Network</li>
+<li><strong>Value Lost</strong>: $0 (Critical Vulnerability Disclosure)</li>
+<li><strong>Chain</strong>: Omnichain (LayerZero Integrations)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 8: Denial of Service (DoS) Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 8.8: DoS in Cross-Chain Messaging Protocols</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 8.7: DoS via Return Data Bomb</code> (Resource Exhaustion)</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Vulnerabilities were identified in how Stargate and Drips Network integrated LayerZero, leading to permanent channel blocking.</li>
+<li><strong>Stargate DoS:</strong> Stargate used a <code>try-catch</code> block to handle failed payload deliveries. Researchers found two ways to bypass this safety mechanism:
+<ol>
+<li><strong>EOA Target:</strong> Sending a payload to an Externally Owned Account (EOA) or a non-contract address could force the <code>try-catch</code> to revert unexpectedly without entering the catch block, blocking the nonce.</li>
+<li><strong>Storage Exhaustion:</strong> Sending an extremely large payload that consumes all gas when the <code>catch</code> block attempts to store it for retry. This causes the catch block itself to revert, preventing the system from clearing the nonce.</li>
+</ol>
+</li>
+<li><strong>Drips Network DoS:</strong> The protocol lacked a recovery mechanism for messages that indefinitely reverted at the bridge level on the destination chain. An attacker could send a message designed to always revert, permanently blocking the channel and preventing any future updates or message delivery.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.trust-security.xyz/post/learning-by-breaking-a-layerzero-case-study-part-2">Trust Security: Learning by Breaking - Part 2 (Stargate)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-03-03---5"><a class="header" href="#2024-03-03---5">2024-03-03 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-03-03 (Blog Series Publication)</li>
+<li><strong>Project</strong>: LayerZero V1</li>
+<li><strong>Value Lost</strong>: $0 (Critical Vulnerability Disclosure)</li>
+<li><strong>Chain</strong>: Omnichain (LayerZero)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 8: Denial of Service (DoS) Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 8.8: DoS in Cross-Chain Messaging Protocols</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 8.11: DoS via Front-Running (Griefing)</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Security researchers at Trust Security disclosed multiple Denial of Service vectors in LayerZero V1.</li>
+<li><strong>Nonce Overlap DoS:</strong> Messages were ordered by a nonce derived from <code>srcChain</code>, <code>srcAddress</code>, and <code>dstChain</code>, but notably excluded the <code>dstAddress</code>. An attacker could configure a malicious application to send a message using the same nonce sequence as a legitimate application on the same path. By sending a "spoofed" message that fails or hangs, the attacker could block the delivery of the legitimate application's message with the same nonce, freezing the channel.</li>
+<li><strong>ONFT Gas DoS:</strong> In the ONFT (Omnichain NFT) implementation, the destination execution calls <code>onERC721Received</code>. An attacker could bridge an NFT to a malicious contract on the destination chain that consumes all available gas in this callback. This would cause the delivery transaction to revert. Because LayerZero V1 enforced strict ordering, this failed message would block all subsequent messages on that path.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.trust-security.xyz/post/learning-by-breaking-a-layerzero-case-study-part-1">Trust Security: Learning by Breaking - Part 1 (Nonce)</a></li>
+<li><a href="https://www.trust-security.xyz/post/learning-by-breaking-a-layerzero-case-study-part-3">Trust Security: Learning by Breaking - Part 3 (OFT/ONFT)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-03-21---4"><a class="header" href="#2024-03-21---4">2024-03-21 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-03-21</li>
+<li><strong>Project</strong>: Super Sushi Samurai</li>
+<li><strong>Value Lost</strong>: ~$4,600,000</li>
+<li><strong>Chain</strong>: Blast</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.4: Self Transfers and Transaction Timing Attacks</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.2.5: Broken State Adjustment</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Super Sushi Samurai (SSS) token was exploited due to a critical logic error in its custom ERC-20 transfer implementation regarding self-transfers.</li>
+<li><strong>The Flaw:</strong> The <code>_update</code> function handled balance updates by first subtracting the amount from the sender (<code>_balances[from] -= amount</code>) and then adding it to the recipient (<code>_balances[to] += amount</code>). However, the implementation incorrectly calculated the new recipient balance <em>before</em> updating the sender's balance in storage.</li>
+<li><strong>The Exploit:</strong> When an attacker transferred tokens to themselves (<code>from == to</code>), the contract would:
+<ol>
+<li>Calculate <code>toBalance</code> (current balance + amount).</li>
+<li>Update <code>_balances[from]</code> (current balance - amount).</li>
+<li>Update <code>_balances[to]</code> with the previously calculated <code>toBalance</code>.
+Since <code>from</code> and <code>to</code> are the same storage slot, step 3 overwrote the deduction from step 2, resulting in the user's balance simply increasing by the transfer amount without the corresponding decrement, effectively doubling their balance with each self-transfer.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://rekt.news/sss-rekt/">Rekt News - SSS Rekt</a></li>
+<li><a href="https://medium.com/neptune-mutual/how-was-super-sushi-samurai-exploited-2a8fbcddf588">Neptune Mutual Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-03-05---3"><a class="header" href="#2024-03-05---3">2024-03-05 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-03-05</li>
+<li><strong>Project</strong>: WOOFI</li>
+<li><strong>Value Lost</strong>: ~$8,750,000</li>
+<li><strong>Chain</strong>: Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.2.1: Insufficient Oracle Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The WOOFI decentralized exchange was exploited due to a vulnerability in its Synthetic Proactive Market Making (sPMM) algorithm.</li>
+<li><strong>The Flaw:</strong> The sPMM pricing mechanism, which adjusted prices based on on-chain trade volume to simulate an order book, was not adequately time-weighted or capped. It allowed a single block of transactions to drastically alter the asset's price.</li>
+<li><strong>The Exploit:</strong> An attacker utilized flashloans to borrow large amounts of WOO and other assets. They executed a sequence of large swaps in a low-liquidity WOO market on Arbitrum, manipulating the sPMM to value WOO at an incredibly low price ($0.00000009).</li>
+<li><strong>Secondary Failure:</strong> WOOFI had a safeguard designed to fall back to a Chainlink oracle if the price deviated too far. However, this fallback was not correctly configured for the WOO token on Arbitrum. Consequently, the system accepted the manipulated price, allowing the attacker to swap back and drain the pool's WOO reserves for pennies.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://woox.io/blog/woofi-spmm-exploit-post-mortem">WOOFI Post-Mortem</a></li>
+<li><a href="https://www.cyfrin.io/blog/hack-analysis-into-woofi-exploit">Cyfrin Hack Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-03-28---2"><a class="header" href="#2024-03-28---2">2024-03-28 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-03-28</li>
+<li><strong>Project</strong>: Ondo Finance</li>
+<li><strong>Value Lost</strong>: $0 (Audit Finding)</li>
+<li><strong>Chain</strong>: N/A (Audit Finding)</li>
+<li><strong>BWC</strong>:
+<ul>
+<li>Broader Classification: BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</li>
+<li>Primary Classification: BWC 5.2.3: Hardcoded or Assumed Asset Price</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The protocol allowed users to deposit USDC to mint the native OUSG token. The amount of OUSG minted was based on a price from an OUSG/USD oracle.</li>
+<li>The vulnerability was a flawed assumption in the minting calculation, which implicitly treated 1 USDC as being exactly equal to 1 USD.</li>
+<li>The code used the raw <code>usdcAmountIn</code> as the basis for the USD value of the deposit, without consulting a USDC/USD oracle.</li>
+<li>During a de-peg event where USDC's market price is less than $1, an attacker could acquire USDC at a discount and deposit it into the protocol. The protocol would then mint OUSG tokens as if the deposited USDC was worth its full $1 value, granting the attacker an arbitrage opportunity at the expense of the protocol.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li>Vulnerable Contract Code:
+<pre><code class="language-javascript">function _getMintAmount(
+    uint256 usdcAmountIn,
+    uint256 price
+) internal view returns (uint256 ousgAmountOut) {
+    uint256 amountE36 = usdcAmountIn * 1e18;
+    ousgAmountOut = amountE36 / price;
+}
+</code></pre>
+</li>
+<li><a href="https://github.com/code-423n4/2024-03-ondo-finance-findings/issues/278">C423n4 Finding</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-03-28---1"><a class="header" href="#2024-03-28---1">2024-03-28 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-03-28</li>
+<li><strong>Project</strong>: Prisma Finance</li>
+<li><strong>Value Lost</strong>: ~$12,000,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.3.1: Missing Validation in Callbacks</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: The <code>MigrateTroveZap</code> contract was exploited due to a critical validation failure in its <code>onFlashLoan</code> callback function. This function was intended to be called only by the lending protocol as part of a legitimate flashloan-initiated migration process. However, the function failed to verify the context of the call or the input data source. This allowed an attacker to invoke <code>onFlashLoan</code> directly with maliciously crafted data, instructing the contract to close other users' "Troves" (collateralized debt positions) and move their collateral. The attacker then manipulated the resulting position to withdraw the excess collateral for themselves.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://hackmd.io/@PrismaRisk/PostMortem0328">Prisma Finance Post-Mortem</a></li>
+<li><a href="https://www.contractreader.io/contract/mainnet/0xcc7218100da61441905e0c327749972e3cbee9ee#migratetrovezap-1-10-62">Contract Analysis</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-02-05---1"><a class="header" href="#2024-02-05---1">2024-02-05 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-02-05</li>
+<li><strong>Project</strong>: Wrapped XETA (WXETA)</li>
+<li><strong>Value Lost</strong>: ~$25,000 (Liquidity Pool Drained)</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.1: Improper Initialization</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.1.1: Missing Access Control</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Wrapped XETA (WXETA) contract was exploited due to a critical re-initialization vulnerability.</li>
+<li><strong>The Flaw:</strong> The contract's <code>initialize</code> function failed to properly set the <code>initialized</code> state variable (or check it correctly), leaving the contract open to being initialized again.</li>
+<li><strong>The Exploit:</strong> An attacker called the public <code>initialize</code> function on the already-deployed contract. This allowed them to overwrite the contract's owner/admin role with their own address. Once they gained admin privileges, they granted themselves minting permissions, minted a massive supply of WXETA tokens, and dumped them into the USDT/WXETA Uniswap pool to drain its liquidity.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.contractreader.io/contract/mainnet/0x3802a712d24eabcfd825fc4dd508abc01e75753e#wxeta-1-1-56">Contract Analysis</a></li>
+<li><a href="https://x.com/CertiKAlert/status/1754422201213038933">CertiK Alert</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-01-22---4"><a class="header" href="#2024-01-22---4">2024-01-22 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-01-22 (Audit Disclosure)</li>
+<li><strong>Project</strong>: Restake Finance</li>
+<li><strong>Value Lost</strong>: $0 (Critical Audit Finding)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.5: Broken State Adjustment</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 7.2: Unsafe Storage &amp; Memory Handling</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical logic error was identified in Restake Finance's withdrawal mechanism during an audit.</li>
+<li><strong>The Flaw:</strong> The protocol processed withdrawals by sending the underlying assets to the user, deleting the <code>WithdrawalRequest</code> struct from storage, and <em>then</em> attempting to burn the corresponding shares.</li>
+<li><strong>The Exploit:</strong> Because the request object was deleted <em>before</em> the burn function was called, the subsequent read of <code>request.shares</code> accessed a zeroed-out storage slot. Consequently, the function burned <code>0</code> shares instead of the correct amount.</li>
+<li><strong>The Impact:</strong> While users received their funds, the corresponding shares were never destroyed. This would lead to a permanent imbalance between the total share supply and the underlying assets, effectively diluting the protocol's exchange rate and breaking the accounting logic.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.openzeppelin.com/restakefi-audit#shares-not-burned-after-redemption-of-underlying-assets">OpenZeppelin Restake Finance Audit</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-01-16---3"><a class="header" href="#2024-01-16---3">2024-01-16 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-01-16</li>
+<li><strong>Project</strong>: Socket (Bungee Bridge)</li>
+<li><strong>Value Lost</strong>: ~$3,300,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.2.4: Composable Arbitrary Calls</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.2.1: Unsafe Token Approvals</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The Socket (Bungee) bridge was exploited due to an arbitrary external call vulnerability in a newly deployed route handler.</li>
+<li><strong>The Flaw:</strong> The contract's <code>performAction</code> function processed user-supplied <code>swapExtraData</code> without validating the target or the calldata.</li>
+<li><strong>The Exploit:</strong> An attacker exploited this by passing the WETH contract address as the target and encoding a <code>transferFrom</code> call in the <code>swapExtraData</code>. Because users had previously granted infinite WETH approvals to the Socket Gateway contract, the contract executed the malicious <code>transferFrom</code> call as a "confused deputy," draining funds from user wallets directly to the attacker.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://rekt.news/socket-rekt/">Rekt News - Socket Rekt</a></li>
+<li><a href="https://socketdottech.medium.com/socket-exploit-post-mortem-8d2495d40900">Socket Post-Mortem</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-01-12---2"><a class="header" href="#2024-01-12---2">2024-01-12 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-01-12</li>
+<li><strong>Project</strong>: Beanstalk (Immunefi Disclosure)</li>
+<li><strong>Value Lost</strong>: $0 (Critical Vulnerability Patched)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 4: Input &amp; Data Validation Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.2.1: Insufficient Oracle Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>: A critical vulnerability was discovered in Beanstalk's "Well" integration (liquidity pools). The protocol failed to validate the <code>Well</code> address provided by a user during liquidity removal. The <code>convert</code> logic trusted the input address to calculate the amount of BEAN tokens to return to the user. Because there was no whitelist or check to ensure the address was a legitimate Beanstalk Well, an attacker could have deployed a malicious contract that acted as a fake Well. This fake contract could report that the attacker was entitled to the entire BEAN balance of the Beanstalk contract, effectively allowing them to drain the silo without holding significant liquidity.</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/immunefi/beanstalk-insufficient-input-validation-bugfix-review-471241940733">Immunefi Bugfix Review</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2024-01-31---1"><a class="header" href="#2024-01-31---1">2024-01-31 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2024-01-31</li>
+<li><strong>Project</strong>: Abracadabra</li>
+<li><strong>Value Lost</strong>: $6,500,000</li>
+<li><strong>Chain</strong>: Ethereum Mainnet</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: BWC 6: Arithmetic &amp; Numeric Vulnerabilities</li>
+<li><strong>Primary Classification</strong>: BWC 6.2: Precision Loss &amp; Rounding Errors</li>
+<li><strong>Secondary Classification</strong>: BWC 5.2.2: First Deposit / Inflation Attack</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>The exploit's root cause was a rounding issue in the CauldronV4 contract's borrow function. An attacker manipulated their share of the total debt by repeatedly borrowing and repaying small amounts of MIM, taking advantage of a rounding error.</li>
+<li>This attack was amplified by an ERC-4626 style inflation attack, where the attacker donated MIM to the BentoBox to manipulate the share price after repaying the debt of all other users.</li>
+<li>By repeatedly borrowing and repaying, the attacker exponentially increased their share of the debt (<code>part</code>) while keeping the total borrowed assets low. This incorrect debt calculation allowed the attacker to borrow a large amount of MIM with very little collateral, draining the liquidity from the <code>yvCrv3Crypto</code> and <code>magicAPE</code> cauldrons.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://etherscan.io/tx/0x26a83db7e28838dd9fee6fb7314ae58dcc6aee9a20bf224c386ff5e80f7e4cf2">Attack Tx 1</a></li>
+<li><a href="https://etherscan.io/tx/0xdb4616b89ad82062787a4e924d520639791302476484b9a6eca5126f79b6d877">Attack Tx 2</a></li>
+<li><a href="https://rekt.news/abra-rekt/">Rekt News Article</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>It’s important to emphasize that the intent behind this content is not to criticize or blame the affected projects but to provide objective overviews that serve as educational material for the community to learn from and better protect projects in the future.</p>
+
+                        </div>
+                        <div id="sidetoc">
+                            <nav id="pagetoc"></nav>
+                        </div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../../skills/bounty-hunting/references/incidents/2025-Incidents.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../../../skills/bounty-hunting/references/incidents/2023-Incidents.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../../skills/bounty-hunting/references/incidents/2025-Incidents.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../../../skills/bounty-hunting/references/incidents/2023-Incidents.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../../elasticlunr.min.js"></script>
+        <script src="../../../../mark.min.js"></script>
+        <script src="../../../../searcher.js"></script>
+
+        <script src="../../../../clipboard.min.js"></script>
+        <script src="../../../../highlight.js"></script>
+        <script src="../../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../../../theme/pagetoc.js"></script>
+        <script src="../../../../theme/collapsible.js"></script>
+
+
+        <!-- Back to Top Button -->
+        <button id="back-to-top" title="Go to Top">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+
+    </div>
+    </body>
+</html>

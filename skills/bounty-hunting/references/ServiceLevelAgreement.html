@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Service Level Agreement - Blockchain Weakness Classification (BWC)</title>
+
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HDV7VPQ8R3"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-HDV7VPQ8R3');
+        </script>
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="A comprehensive taxonomy for EVM vulnerabilities, mapped to 10 years of incident analysis (2016-2026).">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Service Level Agreement - Blockchain Weakness Classification (BWC)">
+        <meta name="twitter:description" content="A comprehensive taxonomy for EVM vulnerabilities, mapped to 10 years of incident analysis (2016-2026).">
+        <meta name="twitter:image" content="https://bbhguild.github.io/bwc/skills/bounty-hunting/references/assets/BWC-2021-2026.png">
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../../theme/pagetoc.css">
+        <link rel="stylesheet" href="../../../theme/collapsible.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Blockchain Weakness Classification (BWC)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/BBHGuild/bwc/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://x.com/BBHGuild/" title="X (Twitter)" aria-label="X (Twitter)">
+                            <i id="x-link" class="fa fa-twitter"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="content-wrap">
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="services-agreement-template-for-a-smart-contract-audit"><a class="header" href="#services-agreement-template-for-a-smart-contract-audit">Services Agreement Template for a Smart Contract Audit</a></h1>
+<p>This Services Agreement ("Agreement") is entered into between [Client Name], hereinafter referred to as "Client," and [Auditor Name], hereinafter referred to as "Auditor," collectively referred to as the "Parties."</p>
+<h2 id="1-scope-of-work"><a class="header" href="#1-scope-of-work">1. Scope of Work</a></h2>
+<p>The Auditor agrees to perform a security audit of the Client's smart contracts deployed on [blockchain network], specifically [list contract addresses or repository links]. The audit will assess the code for vulnerabilities, logic errors, and compliance with industry best practices.</p>
+<h2 id="2-audit-process"><a class="header" href="#2-audit-process">2. Audit Process</a></h2>
+<ul>
+<li>Initial Review: The Auditor will perform an initial assessment of the smart contract code and share preliminary findings.</li>
+<li>Client Feedback: The Client may address the findings and implement fixes based on the initial review.</li>
+<li>Final Review: The Auditor will review the updated code and prepare a final audit report.</li>
+<li>Report Delivery: The final report will detail vulnerabilities, recommendations, and an overall security assessment.</li>
+</ul>
+<h2 id="3-timeline"><a class="header" href="#3-timeline">3. Timeline</a></h2>
+<p>The audit will begin on [start date] and is expected to conclude by [end date], with the final report delivered by [report delivery date]. The Auditor is available to work from the 1st to the 21st of each month, dedicating 12 hours per day, 7 days a week, for a total of 21 consecutive days.</p>
+<h2 id="4-pricing-and-payment-terms"><a class="header" href="#4-pricing-and-payment-terms">4. Pricing and Payment Terms</a></h2>
+<h3 id="41-pricing-formula"><a class="header" href="#41-pricing-formula">4.1 Pricing Formula</a></h3>
+<p>The total fee for the audit is calculated based on the number of Solidity lines of code (SLOC), determined using the following method:</p>
+<ul>
+<li>Code Formatting:
+The Solidity code must be formatted using forge fmt with the following settings:
+<pre><code class="language-bash"> export FOUNDRY_FMT_SINGLE_LINE_STATEMENT_BLOCKS="multi"
+ export FOUNDRY_FMT_LINE_LENGTH=90
+ export FOUNDRY_FMT_TAB_WIDTH=4
+ export FOUNDRY_FMT_MULTILINE_FUNC_HEADER="params_first_multi"
+ export FOUNDRY_FMT_BRACKET_SPACING=false
+ export FOUNDRY_FMT_INT_TYPES="long"
+ export FOUNDRY_FMT_QUOTE_STYLE="double"
+ export FOUNDRY_FMT_NUMBER_UNDERSCORE="thousands"
+ export FOUNDRY_FMT_HEX_UNDERSCORE="remove"
+ export FOUNDRY_FMT_OVERRIDE_SPACING=false
+ export FOUNDRY_FMT_WRAP_COMMENTS=false
+ export FOUNDRY_FMT_CONTRACT_NEW_LINES=true
+ export FOUNDRY_FMT_SORT_IMPORTS=true
+</code></pre>
+</li>
+<li>Counting Lines of Code:
+After formatting, the SLOC will be calculated using cloc, a GNU utility, based on its output for Solidity files.</li>
+<li>The total fee is determined by the formula:</li>
+</ul>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord"> </span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal">ee</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.8em;vertical-align:-0.65em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mbin mtight">×</span><span class="mord text mtight"><span class="mord mtight">testing factor</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">12</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">200</span><span class="mord text"><span class="mord"> USD</span></span></span></span></span></p>
+<p>Where:</p>
+<ul>
+<li>
+<p>( a ) = SLOC, as calculated by cloc after formatting with forge fmt using the settings above.</p>
+</li>
+<li>
+<p>Testing factor = 2 (if the Client provides tests) or 3 (if the Auditor must write tests for Proof of Concept (POC)).</p>
+</li>
+<li>
+<p>Audit Time: The adjusted SLOC (after applying the testing factor) is divided by 200 (assuming the Auditor audits 200 SLOC per hour).</p>
+</li>
+<li>
+<p>Report Compilation: An additional 12 hours is added for compiling the audit report and quality-of-life (QOL) documentation.</p>
+</li>
+<li>
+<p>Hourly Rate: The total hours are multiplied by the Auditor’s rate of {200 USD} per hour.</p>
+</li>
+</ul>
+<h3 id="42-deposit"><a class="header" href="#42-deposit">4.2 Deposit</a></h3>
+<p>The Client shall pay a 30% non-refundable deposit of the estimated total fee upon signing this Agreement. The estimate will be based on an initial SLOC count provided by the Client.</p>
+<h3 id="43-final-payment"><a class="header" href="#43-final-payment">4.3 Final Payment</a></h3>
+<p>The final payment will be adjusted based on the actual SLOC count at the time of the audit and is due upon delivery of the final audit report.</p>
+<h3 id="44-payment-method"><a class="header" href="#44-payment-method">4.4 Payment Method</a></h3>
+<p>Payments shall be made in [cryptocurrency, e.g., ETH, USDC] to the Auditor’s wallet address [wallet address].</p>
+<h3 id="45-late-payments"><a class="header" href="#45-late-payments">4.5 Late Payments</a></h3>
+<p>Late payments will incur interest at [rate] per [time period].</p>
+<h2 id="5-responsibilities"><a class="header" href="#5-responsibilities">5. Responsibilities</a></h2>
+<p>Client Responsibilities:</p>
+<ul>
+<li>Provide the final commit of the smart contracts by [date].</li>
+<li>Indicate whether tests are provided or if the Auditor must write tests for POC.</li>
+<li>Be available for meetings and discussions as required.</li>
+<li>Implement recommended fixes from the audit findings.</li>
+</ul>
+<p>Auditor Responsibilities:</p>
+<ul>
+<li>Perform the audit with professionalism and diligence.</li>
+<li>Deliver a comprehensive final report by the agreed delivery date.</li>
+<li>Maintain confidentiality of the Client’s information.</li>
+</ul>
+<h2 id="6-changes-and-unforeseen-circumstances"><a class="header" href="#6-changes-and-unforeseen-circumstances">6. Changes and Unforeseen Circumstances</a></h2>
+<ul>
+<li>
+<p>Scope Changes: Any changes to the scope must be agreed in writing and may adjust the timeline and fees. New functionality added during the fix audit may incur additional costs.</p>
+</li>
+<li>
+<p>Auditor Unavailability: If the Auditor cannot perform the audit due to unforeseen circumstances, a qualified replacement will be provided, or the timeline will be adjusted.</p>
+</li>
+<li>
+<p>Client Delays: If the Client is not ready by the start date, the Auditor may reschedule or charge additional fees.</p>
+</li>
+<li>
+<p>SLOC Disputes: Any disagreements over the SLOC count will be resolved by re-running cloc on the code formatted with the specified forge fmt settings.</p>
+</li>
+</ul>
+<h2 id="7-intellectual-property"><a class="header" href="#7-intellectual-property">7. Intellectual Property</a></h2>
+<p>The Auditor retains ownership of any tools, methodologies, or concepts developed during the audit, unless otherwise agreed.</p>
+<h2 id="8-liability-limitations"><a class="header" href="#8-liability-limitations">8. Liability Limitations</a></h2>
+<p>The Auditor is not liable for undetected vulnerabilities or exploits after the audit. The Client understands that the audit is a point-in-time evaluation and does not ensure absolute security.</p>
+<h2 id="9-cancellation-policy"><a class="header" href="#9-cancellation-policy">9. Cancellation Policy</a></h2>
+<p>The Client may cancel with at least 7 days’ notice, forfeiting the deposit. Cancellations with less than 7 days’ notice will incur a fee of 50% of the estimated total fee.
+The Auditor may cancel if the Client fails to meet their obligations, with the deposit remaining non-refundable.</p>
+<h2 id="10-dispute-resolution"><a class="header" href="#10-dispute-resolution">10. Dispute Resolution</a></h2>
+<p>Disputes arising from this Agreement will be resolved through [mediation, arbitration, or jurisdiction-specific legal process].</p>
+<h2 id="11-compliance-and-legal-framework"><a class="header" href="#11-compliance-and-legal-framework">11. Compliance and Legal Framework</a></h2>
+<p>The Client confirms that all funds used for payment are from legitimate sources and comply with anti-money laundering (AML) regulations.
+The Auditor may require the Client to complete know-your-business (KYB) procedures before starting the audit.
+Both Parties agree to adhere to applicable laws and regulations.</p>
+<h2 id="12-miscellaneous"><a class="header" href="#12-miscellaneous">12. Miscellaneous</a></h2>
+<p>Confidentiality: Both Parties will protect sensitive information shared during the engagement.
+Report Publication: The Auditor may publish the audit report after 30 days from delivery, unless the Client objects in writing.
+Governing Law: This Agreement is governed by the laws of [jurisdiction].</p>
+<h2 id="13-signatures"><a class="header" href="#13-signatures">13. Signatures</a></h2>
+<p>By signing below, both Parties confirm they have read, understood, and agree to be bound by this Agreement.</p>
+<p>[Client Signature]
+[Date]
+[Auditor Signature]
+[Date]</p>
+
+                        </div>
+                        <div id="sidetoc">
+                            <nav id="pagetoc"></nav>
+                        </div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../skills/bounty-hunting/references/incidents/2016-Incidents.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../skills/bounty-hunting/references/incidents/2016-Incidents.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+            </nav>
+
+        </div>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../../theme/pagetoc.js"></script>
+        <script src="../../../theme/collapsible.js"></script>
+
+
+        <!-- Back to Top Button -->
+        <button id="back-to-top" title="Go to Top">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+
+    </div>
+    </body>
+</html>

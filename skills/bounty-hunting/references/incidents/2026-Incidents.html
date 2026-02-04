@@ -1,0 +1,730 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>2026 Incidents - Blockchain Weakness Classification (BWC)</title>
+
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HDV7VPQ8R3"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-HDV7VPQ8R3');
+        </script>
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="A comprehensive taxonomy for EVM vulnerabilities, mapped to 10 years of incident analysis (2016-2026).">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="2026 Incidents - Blockchain Weakness Classification (BWC)">
+        <meta name="twitter:description" content="A comprehensive taxonomy for EVM vulnerabilities, mapped to 10 years of incident analysis (2016-2026).">
+        <meta name="twitter:image" content="https://bbhguild.github.io/bwc/skills/bounty-hunting/references/assets/BWC-2021-2026.png">
+
+        <link rel="icon" href="../../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../../favicon.png">
+        <link rel="stylesheet" href="../../../../css/variables.css">
+        <link rel="stylesheet" href="../../../../css/general.css">
+        <link rel="stylesheet" href="../../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="../../../../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../../../../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../../../theme/pagetoc.css">
+        <link rel="stylesheet" href="../../../../theme/collapsible.css">
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../../../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../../../../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Blockchain Weakness Classification (BWC)</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/BBHGuild/bwc/" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://x.com/BBHGuild/" title="X (Twitter)" aria-label="X (Twitter)">
+                            <i id="x-link" class="fa fa-twitter"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <div class="content-wrap">
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="2026-evm-contract-vulnerability-incidents-classification--analysis"><a class="header" href="#2026-evm-contract-vulnerability-incidents-classification--analysis">2026 EVM Contract Vulnerability Incidents Classification &amp; Analysis.</a></h1>
+<p>This database uses the <a href="../../../../README.html">BWC</a> to classify Contract Vulnerability Incidents. Note off-chain issues have been excluded they're the most prevalent and resulted in more values lost. Humans remains to be the weakest point human stupidity or ingenuity(depending on how you look at it) could be infinite. It's unfeasible to track it.</p>
+<hr />
+<h2 id="2026-02-02---14"><a class="header" href="#2026-02-02---14">2026-02-02 - 14</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-02-02</li>
+<li><strong>Project</strong>: <a href="https://x.com/matchametaxyz">Matcha Meta (SwapNet)</a></li>
+<li><strong>Value Lost</strong>: ~$16,800,000</li>
+<li><strong>Chain</strong>: Base</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 2: Access Control Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 2.2.3: Untrusted Arbitrary Calls</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.2.1: Unsafe Token Approvals</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Matcha Meta's SwapNet router was exploited for ~$16.8M (later analysis suggests ~$17M) due to an arbitrary call vulnerability in a closed-source contract.</li>
+<li><strong>Vulnerability</strong>: The SwapNet router failed to validate inputs properly, allowing unauthorized arbitrary calls. The attacker used this to force the contract to call <code>transferFrom</code> on various tokens, draining funds from users who had granted infinite approvals to the router.</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Reconnaissance</strong>: The attacker identified users with infinite approvals to the SwapNet router.</li>
+<li><strong>Execution</strong>: The attacker exploited the arbitrary call flaw to inject calls to <code>token.transferFrom(victim, attacker, amount)</code>, bypassing the router's intended logic.</li>
+<li><strong>Laundering</strong>: Funds were swapped for USDC (~$10.5M) and then ~3,655 ETH on Base, which was subsequently bridged to Ethereum Mainnet.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blocksec.com/blog/17m-closed-source-smart-contract-exploit-arbitrary-call-swapnet-aperture">BlockSec Analysis</a></li>
+<li><a href="https://timescrypto.com/cryptonews/blockchain/matcha-meta-exploit-drained-16-8m-via-compromised-router/article-21194/">News Article (TimesCrypto)</a></li>
+<li><a href="https://x.com/matchametaxyz">Matcha Meta X</a></li>
+<li><a href="https://basescan.org/tx/0xc15df1d131e98d24aa0f107a67e33e66cf2ea27903338cc437a3665b6404dd57">Attack Transaction (Basescan)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-26---13"><a class="header" href="#2026-01-26---13">2026-01-26 - 13</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-26</li>
+<li><strong>Project</strong>: Individual Swap Incident (Illiquid Pool)</li>
+<li><strong>Value Lost</strong>: ~$140,000</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.3.1: Lack of Slippage Control</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 1.3.7: Flawed Off-Chain Infrastructure (Potential UI/Routing Failure)</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>An individual user suffered a catastrophic loss of ~$140,000 in a single swap transaction, receiving only ~0.09 EUR in return.</li>
+<li><strong>Vulnerability</strong>: The transaction was executed through a liquidity pool with insufficient depth (illiquid). The user's transaction likely lacked a proper <code>amountOutMin</code> (slippage protection) parameter, or the interface used failed to warn/prevent the routing through the empty pool.</li>
+<li><strong>Execution</strong>: The user attempted to swap a high-value amount of tokens. Due to the lack of liquidity in the selected pool, the trade suffered ~100% price impact. Without a slippage revert, the transaction executed, effectively donating the funds to the pool's liquidity providers or back-running MEV bots.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/deeberiroz/status/2015763113325252857">Community Alert (deebeez)</a></li>
+<li><a href="https://etherscan.io/tx/0xa4fdac0e82003fc66af56f6cefb736c95fe6d4d5a690e46a63c80b93a5b8c808">Swap Transaction (Etherscan)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-11---12"><a class="header" href="#2026-01-11---12">2026-01-11 - 12</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-11 (Estimated based on report timing)</li>
+<li><strong>Project</strong>: MetaverseToken (MT)</li>
+<li><strong>Value Lost</strong>: ~$37,000</li>
+<li><strong>Chain</strong>: BSC</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.2.1: Price Manipulation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>TenArmor detected a suspicious attack involving the MetaverseToken (MT) on BSC, resulting in a loss of approximately $37,000.</li>
+<li><strong>Vulnerability</strong>: Limited details were provided, but the incident has been classified as price manipulation based on the detected on-chain behavior.</li>
+<li><strong>Attack Flow</strong>: The specific mechanics involved an interaction with the MT contract that drained funds, likely via market manipulation or a flaw in how the token handles price/value calculations.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/TenArmorAlert/status/2010630024274010460">TenArmor Alert</a></li>
+<li><a href="https://bscscan.com/tx/0xc758ab15fd51e713ff8b4184620610a1ac809be06ec374305c32d3b244256a64">Attack Transaction (BscScan)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-01---11"><a class="header" href="#2026-01-01---11">2026-01-01 - 11</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-01</li>
+<li><strong>Project</strong>: <a href="https://x.com/valinitydefi">Valinity</a></li>
+<li><strong>Value Lost</strong>: ~$63,000</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures (Flawed Rebalance Logic)</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 5.2.1: Price Manipulation (Spot Price Dependency)</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Valinity was exploited for ~$63k due to a business logic flaw in its rebalancing mechanism.</li>
+<li><strong>Vulnerability</strong>: The <code>acquireByLTVDisparity</code> function, intended to rebalance the synthetic <code>VY</code> token holdings based on LTV ratios and Uniswap V3 spot prices, was publicly callable. Crucially, the logic was flawed as it was hardcoded to execute swaps of <code>VY</code> into a liquidity pool that held negligible liquidity (~$106 USDC).</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Price Manipulation</strong>: The attacker swapped USDC for PAXG to artificially increase the PAXG price on Uniswap V3.</li>
+<li><strong>Forced Dump</strong>: The attacker called the public <code>acquireByLTVDisparity</code> function. Due to the inflated PAXG price (which altered the LTV calculation), the contract logic triggered a sell-off of <code>VY</code> tokens into the illiquid pool.</li>
+<li><strong>Arbitrage/Borrow</strong>: The attacker bought the dumped <code>VY</code> tokens cheaply from the pool and used them as collateral to borrow hard assets (ETH, BTC, PAXG) from the protocol, exiting with the profit.</li>
+</ol>
+</li>
+<li><strong>Note</strong>: The protocol paused contracts following the exploit.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/TenArmorAlert/status/2007644832815018351">TenArmor Alert</a></li>
+<li><a href="https://x.com/hklst4r/status/2007366523464093850">Weilin Li Analysis</a></li>
+<li><a href="https://etherscan.io/tx/0x7f1406435172b8d8675dec95a7f6aa89d10b7ca008150de8742f7fa824e3395c">Attack Transaction (Etherscan)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-01---10"><a class="header" href="#2026-01-01---10">2026-01-01 - 10</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-01</li>
+<li><strong>Project</strong>: PRXVTai</li>
+<li><strong>Value Lost</strong>: ~$97,000</li>
+<li><strong>Chain</strong>: Base</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures (Reward Accounting Mismatch)</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 2.3.1: Missing Validation in Callbacks (Missing Token Transfer Hooks)</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>PRXVTai was exploited for ~$97k on Base due to a flaw in its staking reward mechanics.</li>
+<li><strong>Vulnerability</strong>: The <code>PRXVTStaking</code> contract minted a <strong>transferable</strong> receipt token (<code>stPRXVT</code>) representing staked <code>AgentTokenV2</code>. However, the contract failed to implement the necessary hooks (e.g., <code>_beforeTokenTransfer</code>) to update reward accounting state variables when these receipt tokens were transferred between users.</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Staking/Transfer</strong>: The attacker likely staked tokens to receive <code>stPRXVT</code> or transferred <code>stPRXVT</code> between wallets.</li>
+<li><strong>Accounting Desync</strong>: Because the reward logic (<code>earned()</code>) calculated rewards based on the <em>current</em> balance but the "reward debt" (or <code>userRewardPerTokenPaid</code>) was not synchronized during transfers, the system failed to correctly track how long the tokens were held by specific addresses.</li>
+<li><strong>Drain</strong>: This allowed the attacker to claim inflated rewards, which were then bridged to Ethereum.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/CertiKAlert/status/2006653156927889666">CertiK Alert</a></li>
+<li><a href="https://basescan.org/tx/0x88610208c00f5d5ca234e45205a01199c87cb859f881e8b35297cba8325a5494">Attack Transaction (Basescan)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-20---9"><a class="header" href="#2026-01-20---9">2026-01-20 - 9</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-20</li>
+<li><strong>Project</strong>: <a href="https://x.com/SynapLogic">SynapLogic</a></li>
+<li><strong>Value Lost</strong>: ~$88,000</li>
+<li><strong>Chain</strong>: Base</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.8: Faulty Array &amp; List Handling (Duplicate Entries)</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>SynapLogic on Base was exploited for ~$88k due to a logic flaw in its referral system.</li>
+<li><strong>Vulnerability</strong>: The <code>swapExactTokensForETHSupportingFeeOnTransferTokens</code> function accepted a user-supplied array <code>address[] refBy</code> to distribute referral rewards (10% per referee) but failed to check for duplicate addresses or cap the total payout percentage.</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Duplicate Injection</strong>: The attacker called the function with the <code>refBy</code> array containing their own address repeated 31 times (e.g., <code>[self, self, ... x31]</code>).</li>
+<li><strong>Reward Multiplication</strong>: The contract calculated the reward as 31 * 10% = 310% of the input value.</li>
+<li><strong>Drain</strong>: The contract paid out the inflated reward in ETH/USDC from its reserves to the attacker, draining the purchasing contract.</li>
+</ol>
+</li>
+<li><strong>Note</strong>: The attacker also minted SYP tokens during the process, but these were locked in vesting and could not be sold. The profit was derived solely from draining the contract's liquidity backing the referral payouts.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/SlowMist_Team/status/2013448818365473101">SlowMist Alert</a></li>
+<li><a href="https://x.com/hklst4r/status/2013440353844461979">Weilin Li Analysis</a></li>
+<li><a href="https://basescan.org/tx/0xc54c00046364b6e889db18c73beee9b81df6b5ca822b6d262b3d30cdf376c4b1">Attack Transaction (Basescan)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-20---8"><a class="header" href="#2026-01-20---8">2026-01-20 - 8</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-20</li>
+<li><strong>Project</strong>: <a href="https://x.com/makinafi">MakinaFi</a></li>
+<li><strong>Value Lost</strong>: ~$4,130,000 (1,299 ETH)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.2.1: Price Manipulation (Asset Inflation)</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.2.2: Oracle Manipulation (Internal Accounting as Oracle)</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>MakinaFi's DUSD Machine was exploited for ~$4.13M due to a vulnerability in its internal accounting logic.</li>
+<li><strong>Vulnerability</strong>: The protocol used a specific <strong>Weiroll script</strong> to calculate the value of its positions (specifically in the MIM-3CRV Curve pool) to determine the Assets Under Management (AUM). This script relied on spot values that could be manipulated.</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Manipulation</strong>: The attacker used large flash loans to inflate the value of the MIM-3CRV pool and the associated rewards.</li>
+<li><strong>AUM Update</strong>: The attacker called <code>updateTotalAum</code>, which ran the vulnerable script. This recorded an artificially inflated value for the protocol's holdings, consequently spiking the price of the DUSD token (which is derived from AUM).</li>
+<li><strong>Extraction</strong>: The attacker utilized the DUSD/USDC Curve pool (which relies on this internal price) to swap DUSD for USDC at the inflated rate.</li>
+</ol>
+</li>
+<li><strong>Execution Twist</strong>: The original attacker (0x2F93...) deployed the exploit contract but was <strong>front-run by an MEV bot</strong> (0x935...). The MEV bot replicated the attack logic and secured the funds.</li>
+<li><strong>Status</strong>: The protocol is paused (Recovery Mode). The team is negotiating with the MEV builder and a Rocket Pool validator who unintentionally received a portion of the funds to recover the assets.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://www.certik.com/resources/blog/makina-incident-analysis">CertiK Incident Analysis</a></li>
+<li><a href="https://x.com/makinafi/status/2014079031423930710">MakinaFi Official Update</a></li>
+<li><a href="https://etherscan.io/tx/0x569733b8016ef9418f0b6bde8c14224d9e759e79301499908ecbcd956a0651f5">Attack Tx</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-21---7"><a class="header" href="#2026-01-21---7">2026-01-21 - 7</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-21</li>
+<li><strong>Project</strong>: <a href="https://x.com/Sagaxyz__">SagaEVM</a> (Saga Protocol Chainlet)</li>
+<li><strong>Value Lost</strong>: ~$6.8M bridged to Ethereum)</li>
+<li><strong>Chain</strong>: SagaEVM / Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.2.5: Broken State Adjustment (Infinite Mint)</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 10.3: Cross-Protocol Interoperability Attacks (IBC Message Validation)</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>SagaEVM, an EVM-compatible chainlet of the Saga Protocol, was exploited for approximately $7 million, resulting in a chain halt at block height 6593800. The exploit targeted the ecosystem's stablecoin, Saga Dollar ($D).</li>
+<li><strong>Vulnerability</strong>: The flaw existed within the chain's precompile bridge contract responsible for handling Inter-Blockchain Communication (IBC). The system failed to properly validate custom payloads, allowing a malicious helper contract to bypass collateral checks and mint infinite $D tokens "out of thin air."</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Injection</strong>: The attacker deployed a malicious helper contract (0x7D69...) on SagaEVM.</li>
+<li><strong>Infinite Mint</strong>: The helper contract sent crafted IBC messages to the precompile bridge, triggering the unauthorized minting of ~$7M in $D.</li>
+<li><strong>Extraction</strong>: The attacker bridged the illicitly minted $D to Ethereum Mainnet via the Squid Router.</li>
+<li><strong>Laundering</strong>: On Ethereum, the funds were swapped via 1inch and KyberSwap into ETH  (2,000+ ETH), USDC, yUSD, and tBTC. A portion ($800k) was deposited into Uniswap V4 liquidity positions (NFTs).</li>
+</ol>
+</li>
+<li><strong>Status</strong>: SagaEVM remains paused. The Saga SSC mainnet and other chainlets were unaffected. The $D token depegged ~25% following the inflation event.</li>
+<li><strong>Addresses</strong>:
+<ul>
+<li>Attacker (Saga/ETH): <code>0x2044697623AfA31459642708c83f04eCeF8C6ECB</code></li>
+<li>Malicious Helper Contract (Saga): <code>0x7D69E4376535cf8c1E367418919209f70358581E</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://medium.com/sagaxyz/sagaevm-security-incident-investigation-update-29a1d2a6b0cd">Official Saga Incident Update</a></li>
+<li><a href="https://x.com/hklst4r/status/2014016362054639943">Analysis Tweet (Weilin Li)</a></li>
+<li><a href="https://etherscan.io/address/0x2044697623afa31459642708c83f04ecef8c6ecb">Attacker Address (Etherscan)</a></li>
+<li><a href="https://etherscan.io/tx/0x6aff59e800dc219ff0d1614b3dc512e7a07159197b2a6a26969a9ca25c3e33b4">Loss Transaction (Etherscan)</a></li>
+<li><a href="https://x.com/PeckShieldAlert/status/2011069662377980147">QuillAudits Analysis Tweet</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-12---6"><a class="header" href="#2026-01-12---6">2026-01-12 - 6</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-12</li>
+<li><strong>Project</strong>: <a href="https://x.com/yield">YO Protocol</a></li>
+<li><strong>Value Lost</strong>: ~$3,710,000 (Covered by Protocol Treasury)</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 5: Economic &amp; Game-Theoretic Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 5.3.1: Lack of Slippage Control</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 1.3.7: Flawed Off-Chain Infrastructure</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>YO Protocol suffered a loss of ~$3.71M during a routine rebalancing operation due to a misconfigured automated swap. The protocol's "Automated Harvesting System" attempted to swap ~$3.84M worth of stkGHO for USDC but received only ~$112k, resulting in a 97% loss.</li>
+<li><strong>Vulnerability</strong>: The incident was an operational failure rather than a smart contract exploit. The vault operator (keeper bot) submitted a transaction to the Odos Router with an effectively disabled slippage parameter (set to <code>17,872,058</code>). The on-chain harvesting logic checked for "execution drift" but failed to validate the sanity of the initial output quote.</li>
+<li><strong>Execution</strong>: The aggregator, following the permissive instructions, routed the massive trade through fragmented and illiquid Uniswap V4 pools (and others including Curve/Balancer). The route utilized pools with extreme fee tiers (up to 88%) and insufficient liquidity, vaporizing the funds into the hands of LPs positioned in these pools.</li>
+<li><strong>Incident Response</strong>: The YO Protocol team utilized their multisig to backstop the loss, purchasing ~3.71M GHO via CoW Swap (which offers MEV protection) and redepositing it into the vault. An on-chain message was sent to the LPs requesting a return of funds in exchange for a 10% bounty.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://rekt.news/yo-protocols-slippage-bomb">Rekt News: Yo</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-12---5"><a class="header" href="#2026-01-12---5">2026-01-12 - 5</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-12</li>
+<li><strong>Project</strong>: dHEDGE</li>
+<li><strong>Value Lost</strong>: $0 (Critical Vulnerability Patched; &gt;$10M Risk)</li>
+<li><strong>Chain</strong>: Ethereum / Optimism</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 4: Input &amp; Data Validation Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 4.5.1: Parser Differential / Inconsistent Validation</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 10.3: Cross-Protocol Interoperability Attacks</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A critical vulnerability was identified in dHEDGE’s 1inch integration guard that could have allowed a malicious pool manager to bypass slippage protection and drain over $10M in user funds.</li>
+<li><strong>Vulnerability</strong>: The issue stemmed from a <strong>Parser Differential</strong> between the dHEDGE contract guard and the 1inch Router. The dHEDGE guard calculated slippage based on the <code>token</code> input parameter provided in the function call. However, the 1inch <code>unoswap</code> function for Uniswap V3 pools ignores this <code>token</code> input entirely, determining the swap direction (ZeroForOne) solely based on a specific bitmask within the <code>pool</code> uint256 identifier.</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Parser Deception</strong>: A malicious manager provides a worthless "Fake Token" as the <code>token</code> input. The dHEDGE guard calculates slippage logic based on this Fake Token (which the attacker controls to ensure checks pass).</li>
+<li><strong>Execution Divergence</strong>: The manager constructs the <code>pool</code> identifier such that the 1inch Router executes a swap of the <em>real</em> pool assets (e.g., USDT) -&gt; Fake Token, ignoring the <code>token</code> input provided in step 1.</li>
+<li><strong>Bypass</strong>: Because the dHEDGE guard logic assumes the Fake Token is the source asset being swapped, it fails to validate the slippage/outflow of the real USDT, allowing the manager to drain the pool.</li>
+</ol>
+</li>
+<li><strong>Incident Response</strong>: The vulnerability was disclosed by a whitehat researcher following an audit contest where it was initially missed. The protocol developers confirmed the severity and patched the issue before any exploitation occurred.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/s4muraii77/status/2012140371938070888">Vulnerability Disclosure Write-up</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-08---4"><a class="header" href="#2026-01-08---4">2026-01-08 - 4</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-08</li>
+<li><strong>Project</strong>: <a href="https://x.com/TMXdex">TMXTribe</a></li>
+<li><strong>Value Lost</strong>: ~$1,400,000</li>
+<li><strong>Chain</strong>: Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 3: Smart Contract Logic &amp; State Manipulation</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 3.4.2: Flawed Incentive Structures</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 1.1.2: Barriers to Verification (The Specialist Gap)</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>TMXTribe, a GMX fork, was exploited for approximately $1.4M over a 36-hour period due to flawed logic in its unverified contracts. The attack involved a loop of minting and staking TMX LP tokens using USDT, swapping the deposited USDT for USDG (the protocol's stablecoin), unstaking, and draining the acquired USDG.</li>
+<li><strong>Vulnerability</strong>: The specific root cause was a logic bug in the LP staking and swapping mechanics that failed to account for this extraction loop. The contracts were unverified, hiding the exact flaw from independent review.</li>
+<li><strong>Incident Response</strong>: Despite the exploit continuing for 36 hours, the team failed to pause the protocol. On-chain activity showed the team deploying and upgrading contracts during the attack but taking no effective action to stop the drainage.</li>
+<li><strong>Addresses</strong>:
+<ul>
+<li>Exploiter 1: <code>0x763a67E4418278f84c04383071fC00165C112661</code></li>
+<li>Exploiter 2: <code>0x16Ed3AFf3255FDDB44dAa73B4dE06f0c2E15288d</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://rekt.news/tmztribe-rekt">Rekt News Postmortem</a></li>
+<li><a href="https://arbiscan.io/address/0x763a67e4418278f84c04383071fc00165c112661">Exploiter Address (Arbiscan)</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-08---3"><a class="header" href="#2026-01-08---3">2026-01-08 - 3</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-08</li>
+<li><strong>Project</strong>: <a href="https://x.com/Truebitprotocol">Truebit</a></li>
+<li><strong>Value Lost</strong>: ~$26,600,000</li>
+<li><strong>Chain</strong>: Ethereum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 6: Arithmetic &amp; Numeric Vulnerabilities</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 6.1: Integer Overflow &amp; Underflow</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Truebit was exploited for approximately $26.6M due to an integer overflow vulnerability. A malicious actor was able to mint tokens for 0 ETH and subsequently swap them for 8,535 ETH.</li>
+<li><strong>Vulnerability</strong>: The <code>getPurchasePrice()</code> function, responsible for calculating the minting cost, relied on an internal calculation where intermediate values (<code>v9 + v12</code>) overflowed <code>2^256</code>. This overflow caused the price calculation to wrap around and result in zero (after division), allowing the attacker to mint TRU tokens for free.</li>
+<li><strong>Attack Flow</strong>: The attacker called <code>AdminUpgradeabilityProxy.buyTRU()</code> to mint 240M tokens for 0 ETH, then called <code>sellTRU()</code> to drain ETH from the protocol. This process was repeated with increasing amounts.</li>
+<li><strong>Addresses</strong>:
+<ul>
+<li>Exploiter 1: <code>0x6C8EC8f14bE7C01672d31CFa5f2CEfeAB2562b50</code></li>
+<li>Exploiter 2: <code>0xc0454E545a7A715c6D3627f77bEd376a05182FBc</code></li>
+<li>Protocol Contract: <code>0x764C64b2A09b09Acb100B80d8c505Aa6a0302EF2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/CertiKAlert/status/2009627269451715005">CertiK Alert</a></li>
+<li><a href="https://etherscan.io/address/0x6C8EC8f14bE7C01672d31CFa5f2CEfeAB2562b50">Exploiter 1 Address</a></li>
+<li><a href="https://etherscan.io/tx/0xcd4755645595094a8ab984d0db7e3b4aabde72a5c87c4f176a030629c47fb014">Attack Transaction</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-06---2"><a class="header" href="#2026-01-06---2">2026-01-06 - 2</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-06</li>
+<li><strong>Project</strong>: <a href="https://x.com/ipor_io">IPOR Fusion (USDC Optimizer on Arbitrum)</a></li>
+<li><strong>Value Lost</strong>: ~$336,000</li>
+<li><strong>Chain</strong>: Arbitrum</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 10: Network &amp; Consensus Evolution Attacks</code></li>
+<li><strong>Primary Classification</strong>: <code>BWC 10.4.1: EIP-7702 Delegation Risks</code></li>
+<li><strong>Secondary Classification</strong>: <code>BWC 4.1.1: Insufficient Input Validation</code></li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>A legacy IPOR Fusion vault (USDC on Arbitrum) was exploited for ~$336k. The exploit leveraged a "perfect storm" of a legacy vulnerability and a new attack vector introduced by EIP-7702.</li>
+<li><strong>Vulnerability</strong>: The incident was caused by the combination of two factors:
+<ol>
+<li><strong>Legacy Logic Error</strong>: The specific legacy vault lacked strict validation for "fuses" (logic modules) in its <code>configureInstantWithdrawalFuses</code> function, trusting that only verified addresses would add them.</li>
+<li><strong>EIP-7702 Delegation Hijack</strong>: An administrator account (<code>0xd8a1...</code>) had delegated its execution to a helper contract (<code>0xa3cc...</code>) via EIP-7702. This helper contract contained a vulnerability allowing arbitrary calls.</li>
+</ol>
+</li>
+<li><strong>Attack Flow</strong>:
+<ol>
+<li><strong>Identity Hijacking</strong>: The attacker exploited the arbitrary call vulnerability in the delegated helper contract to force the admin's EOA to call the Vault.</li>
+<li><strong>Malicious Fuse Injection</strong>: Acting as the admin, the attacker added a malicious "fuse" to the vault.</li>
+<li><strong>Drain</strong>: The attacker triggered <code>instantWithdraw</code>, causing the vault to execute the malicious fuse code and transfer assets to the attacker.</li>
+</ol>
+</li>
+<li><strong>Incident Response</strong>: IPOR Labs acknowledged the exploit, confirmed it was isolated to this single legacy vault due to its unique configuration, and stated that the IPOR DAO would cover the shortfall from the treasury.</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://blog.ipor.io/post-mortem-ipor-usdc-optimizer-arbitrum-vault-exploit-aff11fd01b62">IPOR Official Post-Mortem</a></li>
+<li><a href="https://arbiscan.io/tx/0x238b4e619158432ff5ceb279cfea38007d048af4f59901c7af2efcf32e9671b6">Malicious Fuse Injection Tx</a></li>
+<li><a href="https://x.com/ipor_io/status/2008728627190321480">IPOR Security Update Tweet</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2026-01-03---1"><a class="header" href="#2026-01-03---1">2026-01-03 - 1</a></h2>
+<ul>
+<li><strong>Date</strong>: 2026-01-03</li>
+<li><strong>Project</strong>: Flow Blockchain / deBridge / LayerZero</li>
+<li><strong>Value Lost</strong>: Undetermined (Significant breakdown in cross-chain accounting; Specific transactions of ~$200k+ cited)</li>
+<li><strong>Chain</strong>: Flow, Cross-chain</li>
+<li><strong>BWC</strong>:
+<ul>
+<li><strong>Broader Classification</strong>: <code>BWC 1: Ecosystem &amp; Off-Chain Risks</code></li>
+<li><strong>Primary:</strong> <code>BWC 1.1.6: Unverifiable Outcomes</code> (State finality was revoked by decree, not consensus rules).</li>
+<li><strong>Secondary:</strong> <code>BWC 1.1.1: Indispensable Intermediaries</code> (The validators acted as "Landlords" deciding who retains assets, failing the Walkaway Test).</li>
+</ul>
+</li>
+<li><strong>Description</strong>:
+<ul>
+<li>Following an undisclosed exploit, the Flow Blockchain team executed a mandatory chain rollback to revert the network state. However, the team allegedly failed to coordinate this action with critical bridge providers (e.g., deBridge, LayerZero), leading to a catastrophic state desynchronization between Flow and the broader ecosystem.</li>
+<li><strong>Centralization Risk:</strong> The decision to unilaterally roll back the chain highlights the risks of centralized governance in Layer-1 blockchains, where "finality" can be revoked by the operator.</li>
+<li><strong>Bridge Mismatch (Double Spend &amp; Loss):</strong> The rollback created a temporal paradox for cross-chain transactions processed during the rollback window:
+<ol>
+<li><strong>Bridged Out (Double Spend):</strong> Users who bridged funds <em>out</em> of Flow had their assets released on the destination chain. The rollback restored their balances on Flow to the pre-transfer state, effectively doubling their funds.</li>
+<li><strong>Bridged In (Total Loss):</strong> Users who bridged funds <em>into</em> Flow had their assets locked on the source chain. The rollback erased the crediting transaction on Flow, leaving the users with no assets on either chain.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>References</strong>:
+<ul>
+<li><a href="https://x.com/flow_blockchain/status/2005095181755052120">Flow Blockchain Announcement</a></li>
+<li><a href="https://x.com/flow_blockchain/status/2005058237272584680">deBridge/Community Alert</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>It’s important to emphasize that the intent behind this content is not to criticize or blame the affected projects but to provide objective overviews that serve as educational material for the community to learn from and better protect projects in the future.</p>
+
+                        </div>
+                        <div id="sidetoc">
+                            <nav id="pagetoc"></nav>
+                        </div>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../../../skills/bounty-hunting/references/incidents/2025-Incidents.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../../../skills/bounty-hunting/references/incidents/2025-Incidents.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../../elasticlunr.min.js"></script>
+        <script src="../../../../mark.min.js"></script>
+        <script src="../../../../searcher.js"></script>
+
+        <script src="../../../../clipboard.min.js"></script>
+        <script src="../../../../highlight.js"></script>
+        <script src="../../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../../../theme/pagetoc.js"></script>
+        <script src="../../../../theme/collapsible.js"></script>
+
+
+        <!-- Back to Top Button -->
+        <button id="back-to-top" title="Go to Top">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+
+    </div>
+    </body>
+</html>
